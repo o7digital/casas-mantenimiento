@@ -1,0 +1,143 @@
+---
+import "../styles/global.css";
+
+const services = [
+  { number: "01", icon: "⌁", title: "Mantenimiento residencial", text: "Inspecciones, ajustes y reparaciones para conservar su hogar en óptimas condiciones.", value: "Mantenimiento general", featured: true },
+  { number: "02", icon: "ϟ", title: "Electricidad", text: "Instalaciones, contactos, iluminación y diagnóstico de fallas eléctricas.", value: "Electricidad" },
+  { number: "03", icon: "◒", title: "Plomería", text: "Fugas, grifería, sanitarios, tuberías y soluciones preventivas.", value: "Plomería" },
+  { number: "04", icon: "◇", title: "Pintura y acabados", text: "Renovación de interiores y exteriores con acabados limpios y duraderos.", value: "Pintura y acabados" },
+  { number: "05", icon: "⌂", title: "Impermeabilización", text: "Revisión, prevención y tratamiento profesional contra humedad y filtraciones.", value: "Impermeabilización" },
+  { number: "06", icon: "▤", title: "Oficinas y comercios", text: "Mantenimiento programado para espacios de trabajo siempre operativos.", value: "Oficinas y comercios" },
+];
+
+const commitments = [
+  ["01", "Diagnóstico", "profesional"],
+  ["02", "Presupuesto", "transparente"],
+  ["03", "Seguimiento", "por WhatsApp"],
+];
+
+const planBenefits = [
+  ["01", "Revisión general programada", "Detectamos desgaste, fugas y riesgos antes de que crezcan."],
+  ["02", "Prioridad de atención", "Respuesta preferente cuando necesite una intervención."],
+  ["03", "Historial de mantenimiento", "Registro claro de servicios, hallazgos y recomendaciones."],
+];
+
+const process = [
+  ["1", "Cuéntenos qué necesita", "Comparta el servicio y los detalles básicos de su propiedad."],
+  ["2", "Reciba un diagnóstico", "Revisamos el trabajo y presentamos una propuesta clara."],
+  ["3", "Nosotros lo resolvemos", "Coordinamos, ejecutamos y damos seguimiento hasta cerrar."],
+];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mantenimiento profesional, preventivo y correctivo para casas y oficinas." />
+    <meta name="theme-color" content="#111b1a" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>Casa Firme | Mantenimiento residencial</title>
+  </head>
+  <body>
+    <header class="site-header" id="inicio">
+      <a class="brand" href="#inicio" aria-label="Casa Firme, inicio">
+        <span class="brand-mark" aria-hidden="true">CF</span>
+        <span><strong>CASA FIRME</strong><small>Mantenimiento integral</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Navegación principal">
+        <a href="#servicios">Servicios</a><a href="#planes">Planes</a><a href="#proceso">Cómo trabajamos</a>
+      </nav>
+      <a class="header-cta" href="#cotizar">Solicitar visita <span>↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-image" role="img" aria-label="Casa contemporánea con servicio profesional de mantenimiento"></div>
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <p class="eyebrow"><span></span> Mantenimiento residencial y corporativo</p>
+          <h1 id="hero-title">Su propiedad,<br /><em>siempre en orden.</em></h1>
+          <p class="hero-copy">Cuidamos cada detalle de su casa u oficina con atención profesional, seguimiento claro y soluciones que duran.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#cotizar">Agendar una visita <span>→</span></a><a class="button button-ghost" href="#servicios">Conocer servicios</a></div>
+        </div>
+        <aside class="trust-panel" aria-label="Compromisos de servicio">
+          {commitments.map(([number, first, second]) => <div><strong>{number}</strong><span>{first}<br />{second}</span></div>)}
+        </aside>
+      </section>
+
+      <section class="promise section-pad">
+        <div class="section-label">Nuestra promesa</div>
+        <div class="promise-copy"><h2>Una sola llamada.<br /><span>Todo resuelto.</span></h2><p>Coordinamos especialistas de confianza para conservar su propiedad impecable, segura y funcional, sin que usted pierda tiempo buscando distintos proveedores.</p></div>
+        <div class="seal" aria-hidden="true"><span>CUIDADO<br />INTEGRAL</span><b>✓</b></div>
+      </section>
+
+      <section class="services section-pad" id="servicios" aria-labelledby="services-title">
+        <div class="section-heading"><div><p class="section-label">Servicios</p><h2 id="services-title">Expertos para cada detalle</h2></div><p>Desde una reparación puntual hasta el cuidado permanente de toda la propiedad.</p></div>
+        <div class="service-grid">
+          {services.map((service) => (
+            <article class:list={["service-card", { "service-featured": service.featured }]}>
+              <div class="service-top"><span class="service-number">{service.number}</span><span class="service-icon" aria-hidden="true">{service.icon}</span></div>
+              <div><h3>{service.title}</h3><p>{service.text}</p></div>
+              <button class="text-link service-select" data-service={service.value}>Solicitar servicio <span>→</span></button>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="plan section-pad" id="planes" aria-labelledby="plan-title">
+        <div class="plan-visual"><div class="plan-image" role="img" aria-label="Detalle arquitectónico de una casa bien cuidada"></div><div class="plan-badge"><strong>12</strong><span>meses de<br />tranquilidad</span></div></div>
+        <div class="plan-content">
+          <p class="section-label">Plan Casa Firme</p><h2 id="plan-title">Prevenir cuesta menos que reparar.</h2>
+          <p class="plan-intro">Un programa anual diseñado para anticiparse a los problemas y proteger el valor de su propiedad.</p>
+          <ul class="plan-list">{planBenefits.map(([number, title, copy]) => <li><span>{number}</span><div><strong>{title}</strong><p>{copy}</p></div></li>)}</ul>
+          <a class="button button-dark" href="#cotizar">Conocer el plan anual <span>→</span></a>
+        </div>
+      </section>
+
+      <section class="process section-pad" id="proceso" aria-labelledby="process-title">
+        <div class="section-heading light"><div><p class="section-label">Así de fácil</p><h2 id="process-title">Cuidamos su espacio<br />de principio a fin.</h2></div></div>
+        <div class="process-grid">{process.map(([number, title, copy]) => <article><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
+      </section>
+
+      <section class="quote section-pad" id="cotizar" aria-labelledby="quote-title">
+        <div class="quote-intro"><p class="section-label">Solicite una visita</p><h2 id="quote-title">Hablemos de su propiedad.</h2><p>Déjenos sus datos y prepararemos la conversación para atenderle de forma ágil.</p><div class="availability"><i></i><span>Atención en casas, oficinas y comercios</span></div></div>
+        <form class="quote-form" id="quote-form">
+          <label>Nombre completo<input id="name" name="name" type="text" placeholder="¿Cómo podemos llamarle?" required /></label>
+          <div class="field-row">
+            <label>Tipo de propiedad<select id="property" name="property"><option>Casa habitación</option><option>Departamento</option><option>Oficina</option><option>Comercio</option></select></label>
+            <label>Servicio<select id="service" name="service"><option>Mantenimiento general</option><option>Electricidad</option><option>Plomería</option><option>Pintura y acabados</option><option>Impermeabilización</option><option>Oficinas y comercios</option><option>Plan anual</option></select></label>
+          </div>
+          <label>¿Qué necesita resolver?<textarea id="details" name="details" rows="3" placeholder="Cuéntenos brevemente..."></textarea></label>
+          <button class="button button-primary form-submit" type="submit">Preparar solicitud <span>→</span></button>
+          <p class="form-note">Sin compromiso. Le contactaremos para confirmar la visita.</p>
+          <div class="form-success" id="form-success" role="status" aria-live="polite" hidden><strong>Solicitud preparada.</strong><span id="success-text">Gracias. Ya tenemos los datos para contactarle.</span></div>
+        </form>
+      </section>
+    </main>
+
+    <footer><a class="brand footer-brand" href="#inicio"><span class="brand-mark">CF</span><span><strong>CASA FIRME</strong><small>Mantenimiento integral</small></span></a><p>Su propiedad en buenas manos.</p><p class="copyright">© <span id="year"></span> Casa Firme</p></footer>
+
+    <script>
+      const serviceSelect = document.querySelector('#service');
+      const quoteSection = document.querySelector('#cotizar');
+      document.querySelectorAll('.service-select').forEach((button) => {
+        button.addEventListener('click', () => {
+          serviceSelect.value = button.dataset.service;
+          quoteSection.scrollIntoView({ behavior: 'smooth' });
+          window.setTimeout(() => document.querySelector('#name').focus(), 550);
+        });
+      });
+      document.querySelector('#quote-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const name = document.querySelector('#name').value.trim();
+        const property = document.querySelector('#property').value;
+        const success = document.querySelector('#form-success');
+        document.querySelector('#success-text').textContent = `${name}, registramos su solicitud de ${serviceSelect.value.toLowerCase()} para ${property.toLowerCase()}.`;
+        success.hidden = false;
+        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+      document.querySelector('#year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
