@@ -48,7 +48,18 @@ const process = [
       <nav class="desktop-nav" aria-label="Navegación principal">
         <a href="#servicios">Servicios</a><a href="#planes">Planes</a><a href="#proceso">Cómo trabajamos</a>
       </nav>
-      <a class="header-cta" href="#cotizar">Solicitar visita <span>↗</span></a>
+      <div class="header-actions">
+        <a class="header-cta" href="#cotizar">Solicitar visita <span>↗</span></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación móvil" hidden>
+        <a href="#servicios"><span>01</span>Servicios</a>
+        <a href="#planes"><span>02</span>Planes</a>
+        <a href="#proceso"><span>03</span>Cómo trabajamos</a>
+        <a class="button button-primary" href="#cotizar">Solicitar visita <span>→</span></a>
+      </nav>
     </header>
 
     <main>
@@ -119,6 +130,26 @@ const process = [
     <footer><a class="brand footer-brand" href="#inicio"><span class="brand-mark">CF</span><span><strong>CASA FIRME</strong><small>Mantenimiento integral</small></span></a><p>Su propiedad en buenas manos.</p><p class="copyright">© <span id="year"></span> Casa Firme</p></footer>
 
     <script>
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mobileMenu = document.querySelector('#mobile-menu');
+      const closeMenu = () => {
+        mobileMenu.hidden = true;
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Abrir menú');
+        document.body.classList.remove('menu-open');
+      };
+      menuToggle.addEventListener('click', () => {
+        const willOpen = mobileMenu.hidden;
+        mobileMenu.hidden = !willOpen;
+        menuToggle.setAttribute('aria-expanded', String(willOpen));
+        menuToggle.setAttribute('aria-label', willOpen ? 'Cerrar menú' : 'Abrir menú');
+        document.body.classList.toggle('menu-open', willOpen);
+      });
+      mobileMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 1050) closeMenu();
+      });
+
       const serviceSelect = document.querySelector('#service');
       const quoteSection = document.querySelector('#cotizar');
       document.querySelectorAll('.service-select').forEach((button) => {
