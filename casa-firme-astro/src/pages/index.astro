@@ -41,10 +41,70 @@ const projectTypes = [
   ["03", "Conservación de inmuebles", "Pintura general, resanes y restauración de áreas comunes para prolongar la vida y el valor de la propiedad."],
 ];
 
-const caseDetails = [
-  ["Reto inicial", "Humedad persistente y acabados deteriorados que comprometían el uso y la imagen del espacio."],
-  ["Solución aplicada", "Diagnóstico de origen, corrección de filtraciones, preparación de superficies y acabados resistentes a la humedad."],
-  ["Respaldo", "Garantía definida por escrito según los materiales, el alcance y las condiciones de cada proyecto."],
+const portfolioStories = [
+  {
+    number: "01",
+    eyebrow: "Antes y después",
+    title: "De un espacio deteriorado a un ambiente renovado.",
+    text: "La misma perspectiva permite comprobar la transformación: control de humedad, renovación de instalaciones y acabados limpios.",
+    image: "/proyecto-antes-despues.webp",
+    alt: "Comparación antes y después de una remodelación de baño con humedad corregida y nuevos acabados",
+    width: 1600,
+    height: 1067,
+  },
+  {
+    number: "02",
+    eyebrow: "Zoom a los detalles",
+    title: "La calidad se reconoce de cerca.",
+    text: "Instalaciones ordenadas, cortes precisos, pintura uniforme, carpintería cuidada y pisos correctamente alineados.",
+    image: "/detalles-acabados.webp",
+    alt: "Detalles de instalación de plomería, encuentro de pintura con carpintería y colocación precisa de piso",
+    width: 1600,
+    height: 901,
+  },
+  {
+    number: "03",
+    eyebrow: "Seguridad y orden",
+    title: "Protegemos a las personas y al inmueble.",
+    text: "Personal uniformado, equipo de protección, superficies cubiertas, herramientas organizadas y limpieza durante toda la obra.",
+    image: "/equipo-seguridad-orden.webp",
+    alt: "Técnicos uniformados con equipo de protección trabajando en una obra residencial limpia y ordenada",
+    width: 1600,
+    height: 1067,
+  },
+];
+
+const projectCases = [
+  {
+    number: "01",
+    type: "Mantenimiento correctivo",
+    title: "Control de humedad e impermeabilización",
+    challenge: "Filtraciones recurrentes, manchas interiores y desprendimiento de pintura durante la temporada de lluvias.",
+    solution: "Inspección de pendientes y puntos críticos, resane, sellado de fisuras y aplicación del sistema impermeable compatible con la superficie.",
+    materials: "Sellador, malla de refuerzo y sistema impermeabilizante especificados tras el diagnóstico.",
+    timing: "Cronograma definido después de medir el área y revisar las condiciones climáticas.",
+    warranty: "Respaldo por escrito; la ficha contractual indica los meses o años según el sistema y fabricante elegidos.",
+  },
+  {
+    number: "02",
+    type: "Remodelación integral",
+    title: "Modernización de baño residencial",
+    challenge: "Instalaciones antiguas, distribución poco funcional y acabados afectados por humedad persistente.",
+    solution: "Corrección de instalaciones, impermeabilización de zonas húmedas, colocación de recubrimientos y renovación de mobiliario y accesorios.",
+    materials: "Tubería, adhesivos, boquilla, recubrimientos y selladores definidos en la propuesta aprobada.",
+    timing: "Programa por etapas para coordinar demoliciones, instalaciones, secados y acabados.",
+    warranty: "Garantía de mano de obra y materiales formalizada en contrato con vigencia claramente indicada.",
+  },
+  {
+    number: "03",
+    type: "Conservación de inmuebles",
+    title: "Recuperación de fachada y áreas comunes",
+    challenge: "Fisuras, pintura degradada y una imagen exterior que ya no correspondía con el valor del inmueble.",
+    solution: "Preparación de superficies, resanes localizados, sellado, pintura y restauración ordenada de elementos visibles.",
+    materials: "Resanadores, selladores y recubrimientos seleccionados según exposición, sustrato y acabado requerido.",
+    timing: "Plan de trabajo acordado para mantener accesos seguros y reducir afectaciones a los usuarios.",
+    warranty: "Periodo de respaldo expresado en meses o años dentro de la cotización y el contrato de obra.",
+  },
 ];
 ---
 
@@ -116,10 +176,14 @@ const caseDetails = [
 
       <section class="portfolio section-pad" id="portafolio" aria-labelledby="portfolio-title">
         <div class="section-heading"><div><p class="section-label">Portafolio visual</p><h2 id="portfolio-title">El cuidado se ve<br />en cada detalle.</h2></div><p>Transformaciones reales, acabados pulcros y equipos que trabajan con seguridad, orden y respeto por su propiedad.</p></div>
-        <figure class="portfolio-visual">
-          <img src="/portfolio-casa-firme.webp" alt="Comparativa de una restauración, detalle de acabados y personal de mantenimiento con equipo de seguridad" loading="lazy" width="1800" height="1200" />
-          <figcaption><span><b>01</b> Antes y después</span><span><b>02</b> Acabados de precisión</span><span><b>03</b> Seguridad y orden</span></figcaption>
-        </figure>
+        <div class="portfolio-gallery">
+          {portfolioStories.map((story) => (
+            <article class="portfolio-story">
+              <img src={story.image} alt={story.alt} loading="lazy" width={story.width} height={story.height} />
+              <div class="portfolio-story-copy"><span>{story.number}</span><div><p>{story.eyebrow}</p><h3>{story.title}</h3><div class="story-description">{story.text}</div></div></div>
+            </article>
+          ))}
+        </div>
         <div class="portfolio-proof" aria-label="Qué documentamos en cada proyecto">
           <p>Una obra bien hecha también debe poder comprobarse.</p>
           <ul><li>Estado inicial</li><li>Avance por etapas</li><li>Detalle de acabados</li><li>Entrega limpia</li></ul>
@@ -129,10 +193,21 @@ const caseDetails = [
       <section class="projects section-pad" id="proyectos" aria-labelledby="projects-title">
         <div class="section-heading light"><div><p class="section-label">Experiencia técnica</p><h2 id="projects-title">Soluciones para cada etapa del inmueble.</h2></div><p>Atendemos desde una corrección puntual hasta una remodelación completa, siempre con alcance, tiempos y respaldo claros.</p></div>
         <div class="project-types">{projectTypes.map(([number, title, copy]) => <article><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
-        <article class="case-study">
-          <div class="case-heading"><p class="section-label">Caso de éxito</p><h3>Recuperación integral de interiores</h3><p>Un proceso documentado que convierte un problema recurrente en una solución durable y verificable.</p></div>
-          <dl>{caseDetails.map(([term, detail]) => <div><dt>{term}</dt><dd>{detail}</dd></div>)}</dl>
-        </article>
+        <div class="case-heading-main"><p class="section-label">Proyectos realizados · fichas técnicas</p><h3>Del reto inicial al respaldo final.</h3><p>Cada expediente reúne el diagnóstico, la solución, los materiales, el tiempo de ejecución y la garantía acordada.</p></div>
+        <div class="case-grid">
+          {projectCases.map((project) => (
+            <article class="case-card">
+              <header><span>{project.number}</span><p>{project.type}</p><h3>{project.title}</h3></header>
+              <dl>
+                <div><dt>Reto inicial</dt><dd>{project.challenge}</dd></div>
+                <div><dt>Solución aplicada</dt><dd>{project.solution}</dd></div>
+                <div><dt>Materiales</dt><dd>{project.materials}</dd></div>
+                <div><dt>Tiempo de ejecución</dt><dd>{project.timing}</dd></div>
+                <div><dt>Garantía</dt><dd>{project.warranty}</dd></div>
+              </dl>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section class="services section-pad" id="servicios" aria-labelledby="services-title">
