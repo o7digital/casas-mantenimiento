@@ -23,9 +23,22 @@ const planBenefits = [
 ];
 
 const process = [
-  ["1", "Cuéntenos qué necesita", "Comparta el servicio y los detalles básicos de su propiedad."],
-  ["2", "Reciba un diagnóstico", "Revisamos el trabajo y presentamos una propuesta clara."],
-  ["3", "Nosotros lo resolvemos", "Coordinamos, ejecutamos y damos seguimiento hasta cerrar."],
+  ["1", "Cotización sin compromiso", "Conocemos el inmueble, escuchamos sus necesidades y definimos el alcance."],
+  ["2", "Contrato formal", "Acordamos por escrito costos, materiales, tiempos y la garantía del trabajo."],
+  ["3", "Reportes de avance", "Documentamos cada etapa y mantenemos comunicación clara durante la ejecución."],
+  ["4", "Entrega limpia", "Revisamos los acabados, retiramos residuos y entregamos el espacio listo para usarse."],
+];
+
+const projectTypes = [
+  ["01", "Mantenimiento preventivo y correctivo", "Impermeabilización, plomería y sistemas eléctricos para evitar fallas y recuperar la operación de cada espacio."],
+  ["02", "Remodelaciones integrales", "Modernización coordinada de cocinas, baños, fachadas y locales comerciales, del diagnóstico a los acabados."],
+  ["03", "Conservación de inmuebles", "Pintura general, resanes y restauración de áreas comunes para prolongar la vida y el valor de la propiedad."],
+];
+
+const caseDetails = [
+  ["Reto inicial", "Humedad persistente y acabados deteriorados que comprometían el uso y la imagen del espacio."],
+  ["Solución aplicada", "Diagnóstico de origen, corrección de filtraciones, preparación de superficies y acabados resistentes a la humedad."],
+  ["Respaldo", "Garantía definida por escrito según los materiales, el alcance y las condiciones de cada proyecto."],
 ];
 ---
 
@@ -46,7 +59,7 @@ const process = [
         <span><strong>CASA FIRME</strong><small>Mantenimiento integral</small></span>
       </a>
       <nav class="desktop-nav" aria-label="Navegación principal">
-        <a href="#servicios">Servicios</a><a href="#planes">Planes</a><a href="#proceso">Cómo trabajamos</a>
+        <a href="#servicios">Servicios</a><a href="#portafolio">Portafolio</a><a href="#proyectos">Proyectos</a><a href="#proceso">Cómo trabajamos</a>
       </nav>
       <div class="header-actions">
         <a class="header-cta" href="#cotizar">Solicitar visita <span>↗</span></a>
@@ -56,8 +69,9 @@ const process = [
       </div>
       <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación móvil" hidden>
         <a href="#servicios"><span>01</span>Servicios</a>
-        <a href="#planes"><span>02</span>Planes</a>
-        <a href="#proceso"><span>03</span>Cómo trabajamos</a>
+        <a href="#portafolio"><span>02</span>Portafolio</a>
+        <a href="#proyectos"><span>03</span>Proyectos</a>
+        <a href="#proceso"><span>04</span>Cómo trabajamos</a>
         <a class="button button-primary" href="#cotizar">Solicitar visita <span>→</span></a>
       </nav>
     </header>
@@ -79,8 +93,25 @@ const process = [
 
       <section class="promise section-pad">
         <div class="section-label">Nuestra promesa</div>
-        <div class="promise-copy"><h2>Una sola llamada.<br /><span>Todo resuelto.</span></h2><p>Coordinamos especialistas de confianza para conservar su propiedad impecable, segura y funcional, sin que usted pierda tiempo buscando distintos proveedores.</p></div>
+        <div class="promise-copy"><h2>Protegemos su inmueble.<br /><span>Aumentamos su valor.</span></h2><p>Cuidamos propiedades residenciales, comerciales y corporativas con mantenimiento oportuno, soluciones duraderas y una ejecución que protege cada detalle de su inversión.</p><a class="social-link" href="#comunidad">Conozca nuestra comunidad digital <span>↗</span></a></div>
         <div class="seal" aria-hidden="true"><span>CUIDADO<br />INTEGRAL</span><b>✓</b></div>
+      </section>
+
+      <section class="portfolio section-pad" id="portafolio" aria-labelledby="portfolio-title">
+        <div class="section-heading"><div><p class="section-label">Portafolio visual</p><h2 id="portfolio-title">El cuidado se ve<br />en cada detalle.</h2></div><p>Transformaciones reales, acabados pulcros y equipos que trabajan con seguridad, orden y respeto por su propiedad.</p></div>
+        <figure class="portfolio-visual">
+          <img src="/portfolio-casa-firme.webp" alt="Comparativa de una restauración, detalle de acabados y personal de mantenimiento con equipo de seguridad" loading="lazy" width="1800" height="1200" />
+          <figcaption><span><b>01</b> Antes y después</span><span><b>02</b> Acabados de precisión</span><span><b>03</b> Seguridad y orden</span></figcaption>
+        </figure>
+      </section>
+
+      <section class="projects section-pad" id="proyectos" aria-labelledby="projects-title">
+        <div class="section-heading light"><div><p class="section-label">Experiencia técnica</p><h2 id="projects-title">Soluciones para cada etapa del inmueble.</h2></div><p>Atendemos desde una corrección puntual hasta una remodelación completa, siempre con alcance, tiempos y respaldo claros.</p></div>
+        <div class="project-types">{projectTypes.map(([number, title, copy]) => <article><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
+        <article class="case-study">
+          <div class="case-heading"><p class="section-label">Caso de éxito</p><h3>Recuperación integral de interiores</h3><p>Un proceso documentado que convierte un problema recurrente en una solución durable y verificable.</p></div>
+          <dl>{caseDetails.map(([term, detail]) => <div><dt>{term}</dt><dd>{detail}</dd></div>)}</dl>
+        </article>
       </section>
 
       <section class="services section-pad" id="servicios" aria-labelledby="services-title">
@@ -111,8 +142,13 @@ const process = [
         <div class="process-grid">{process.map(([number, title, copy]) => <article><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
       </section>
 
+      <section class="community section-pad" id="comunidad" aria-labelledby="community-title">
+        <div><p class="section-label">Comunidad digital</p><h2 id="community-title">Vea cómo cuidamos cada obra, día a día.</h2></div>
+        <div><p>En Instagram compartimos avances, transformaciones y consejos prácticos para conservar mejor su inmueble.</p><a class="button button-dark" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram, abre en una nueva pestaña">Visitar Instagram <span>↗</span></a></div>
+      </section>
+
       <section class="quote section-pad" id="cotizar" aria-labelledby="quote-title">
-        <div class="quote-intro"><p class="section-label">Solicite una visita</p><h2 id="quote-title">Hablemos de su propiedad.</h2><p>Déjenos sus datos y prepararemos la conversación para atenderle de forma ágil.</p><div class="availability"><i></i><span>Atención en casas, oficinas y comercios</span></div></div>
+        <div class="quote-intro"><p class="section-label">Solicite un presupuesto</p><h2 id="quote-title">Hablemos de su propiedad.</h2><p>Déjenos sus datos para preparar una cotización sin compromiso y atenderle de forma ágil.</p><div class="contact-channels"><span>Teléfono</span><span>Correo</span><span>WhatsApp corporativo</span></div><div class="availability"><i></i><span>Atención en casas, oficinas y comercios</span></div></div>
         <form class="quote-form" id="quote-form">
           <label>Nombre completo<input id="name" name="name" type="text" placeholder="¿Cómo podemos llamarle?" required /></label>
           <div class="field-row">
