@@ -16,6 +16,12 @@ const commitments = [
   ["03", "Seguimiento", "por WhatsApp"],
 ];
 
+const propertyTypes = [
+  ["Residencial", "Conservamos casas y departamentos con intervenciones cuidadosas, limpias y pensadas para durar."],
+  ["Comercial", "Renovamos espacios de atención sin perder de vista la imagen, la operación y los tiempos del negocio."],
+  ["Corporativo", "Coordinamos mantenimiento y mejoras con procesos claros, reportes de avance y entregas verificables."],
+];
+
 const planBenefits = [
   ["01", "Revisión general programada", "Detectamos desgaste, fugas y riesgos antes de que crezcan."],
   ["02", "Prioridad de atención", "Respuesta preferente cuando necesite una intervención."],
@@ -93,8 +99,19 @@ const caseDetails = [
 
       <section class="promise section-pad">
         <div class="section-label">Nuestra promesa</div>
-        <div class="promise-copy"><h2>Protegemos su inmueble.<br /><span>Aumentamos su valor.</span></h2><p>Cuidamos propiedades residenciales, comerciales y corporativas con mantenimiento oportuno, soluciones duraderas y una ejecución que protege cada detalle de su inversión.</p><a class="social-link" href="#comunidad">Conozca nuestra comunidad digital <span>↗</span></a></div>
+        <div class="promise-copy"><h2>Protegemos su inmueble.<br /><span>Aumentamos su valor.</span></h2><p>Más que reparar, conservamos lo que usted ha construido. Cada intervención combina diagnóstico, ejecución responsable y seguimiento para mantener su propiedad segura, funcional y vigente.</p><a class="social-link" href="#comunidad">Conozca nuestra comunidad digital <span>↗</span></a></div>
         <div class="seal" aria-hidden="true"><span>CUIDADO<br />INTEGRAL</span><b>✓</b></div>
+      </section>
+
+      <section class="presentation section-pad" aria-labelledby="presentation-title">
+        <div class="presentation-intro">
+          <p class="section-label">Carta de presentación</p>
+          <h2 id="presentation-title">Cuidamos el presente.<br /><em>Preservamos el futuro.</em></h2>
+          <p>Casa Firme acompaña a propietarios y empresas con una visión integral: detectar a tiempo, resolver con oficio y documentar cada avance. Así protegemos la inversión y elevamos el valor de cada espacio.</p>
+        </div>
+        <div class="property-types">
+          {propertyTypes.map(([title, copy], index) => <article><span>0{index + 1}</span><div><h3>{title}</h3><p>{copy}</p></div></article>)}
+        </div>
       </section>
 
       <section class="portfolio section-pad" id="portafolio" aria-labelledby="portfolio-title">
@@ -103,6 +120,10 @@ const caseDetails = [
           <img src="/portfolio-casa-firme.webp" alt="Comparativa de una restauración, detalle de acabados y personal de mantenimiento con equipo de seguridad" loading="lazy" width="1800" height="1200" />
           <figcaption><span><b>01</b> Antes y después</span><span><b>02</b> Acabados de precisión</span><span><b>03</b> Seguridad y orden</span></figcaption>
         </figure>
+        <div class="portfolio-proof" aria-label="Qué documentamos en cada proyecto">
+          <p>Una obra bien hecha también debe poder comprobarse.</p>
+          <ul><li>Estado inicial</li><li>Avance por etapas</li><li>Detalle de acabados</li><li>Entrega limpia</li></ul>
+        </div>
       </section>
 
       <section class="projects section-pad" id="proyectos" aria-labelledby="projects-title">
