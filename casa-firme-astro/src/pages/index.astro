@@ -257,7 +257,7 @@ const projectCases = [
             <article class:list={["service-card", { "service-featured": service.featured }]}>
               <div class="service-top"><span class="service-number">{service.number}</span><span class="service-icon" aria-hidden="true">{service.icon}</span></div>
               <div><h3>{service.title}</h3><p>{service.text}</p></div>
-              <button class="text-link service-select" data-service={service.value}>Solicitar servicio <span>→</span></button>
+              <a class="text-link service-select" href="#cotizar" data-service={service.value}>Solicitar servicio <span>→</span></a>
             </article>
           ))}
         </div>
@@ -269,7 +269,7 @@ const projectCases = [
           <p class="section-label">Plan Casa Firme</p><h2 id="plan-title">Prevenir cuesta menos que reparar.</h2>
           <p class="plan-intro">Un programa anual diseñado para anticiparse a los problemas y proteger el valor de su propiedad.</p>
           <ul class="plan-list">{planBenefits.map(([number, title, copy]) => <li><span>{number}</span><div><strong>{title}</strong><p>{copy}</p></div></li>)}</ul>
-          <a class="button button-dark" href="#cotizar">Conocer el plan anual <span>→</span></a>
+          <a class="button button-dark service-select" href="#cotizar" data-service="Plan anual">Conocer el plan anual <span>→</span></a>
         </div>
       </section>
 
@@ -284,17 +284,22 @@ const projectCases = [
       </section>
 
       <section class="quote section-pad" id="cotizar" aria-labelledby="quote-title">
-        <div class="quote-intro"><p class="section-label">Contacto</p><h2 id="quote-title">Hablemos de su propiedad.</h2><p>Déjenos sus datos para preparar una cotización sin compromiso y atenderle de forma ágil.</p><div class="contact-channels"><span>Teléfono</span><span>Correo</span><span>WhatsApp corporativo</span></div><div class="availability"><i></i><span>Atención en casas, oficinas y comercios</span></div></div>
-        <form class="quote-form" id="quote-form">
-          <label>Nombre completo<input id="name" name="name" type="text" placeholder="¿Cómo podemos llamarle?" required /></label>
+        <div class="quote-intro"><p class="section-label">Contacto</p><h2 id="quote-title">Hablemos de su propiedad.</h2><p>Déjenos sus datos para preparar una cotización sin compromiso y atenderle de forma ágil.</p><p>Incluya su correo para que podamos responderle. Si prefiere que le contactemos por teléfono o WhatsApp, deje también su número e indíquelo en el mensaje.</p><div class="availability"><i></i><span>Atención en casas, oficinas y comercios</span></div></div>
+        <form class="quote-form" id="quote-form" action="https://formspree.io/f/moeqrljv" method="POST" aria-describedby="form-note">
+          <input type="hidden" name="_subject" value="Nueva solicitud de contacto — Casa Firme" />
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden />
+          <label>Nombre completo<input id="name" name="name" type="text" autocomplete="name" placeholder="¿Cómo podemos llamarle?" required /></label>
+          <label>Correo electrónico<input id="email" name="email" type="email" autocomplete="email" placeholder="usted@ejemplo.com" required /></label>
+          <label>Teléfono o WhatsApp (opcional)<input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Incluya el código de país" /></label>
           <div class="field-row">
             <label>Tipo de propiedad<select id="property" name="property"><option>Casa habitación</option><option>Departamento</option><option>Oficina</option><option>Comercio</option></select></label>
             <label>Servicio<select id="service" name="service"><option>Mantenimiento general</option><option>Electricidad</option><option>Plomería</option><option>Pintura y acabados</option><option>Impermeabilización</option><option>Oficinas y comercios</option><option>Plan anual</option></select></label>
           </div>
           <label>¿Qué necesita resolver?<textarea id="details" name="details" rows="3" placeholder="Cuéntenos brevemente..."></textarea></label>
-          <button class="button button-primary form-submit" type="submit">Preparar solicitud <span>→</span></button>
-          <p class="form-note">Sin compromiso. Le contactaremos para confirmar la visita.</p>
-          <div class="form-success" id="form-success" role="status" aria-live="polite" hidden><strong>Solicitud preparada.</strong><span id="success-text">Gracias. Ya tenemos los datos para contactarle.</span></div>
+          <button class="button button-primary form-submit" type="submit"><span id="submit-label">Enviar solicitud</span><span aria-hidden="true">→</span></button>
+          <p class="form-note" id="form-note">Sin compromiso. Usaremos sus datos para responder a su solicitud.</p>
+          <div class="form-success" id="form-success" role="status" aria-live="polite" hidden><strong>Solicitud enviada.</strong><span>Gracias por escribirnos. Nos pondremos en contacto con usted para revisar los detalles.</span></div>
+          <p class="form-error" id="form-error" role="alert" hidden></p>
         </form>
       </section>
     </main>
@@ -322,23 +327,59 @@ const projectCases = [
         if (window.innerWidth > 1050) closeMenu();
       });
 
-      const serviceSelect = document.querySelector('#service');
+      const serviceSelect = document.querySelector<HTMLSelectElement>('#service')!;
       const quoteSection = document.querySelector('#cotizar');
-      document.querySelectorAll('.service-select').forEach((button) => {
-        button.addEventListener('click', () => {
-          serviceSelect.value = button.dataset.service;
+      document.querySelectorAll<HTMLAnchorElement>('.service-select').forEach((link) => {
+        link.addEventListener('click', () => {
+          serviceSelect.value = link.dataset.service!;
           quoteSection.scrollIntoView({ behavior: 'smooth' });
           window.setTimeout(() => document.querySelector('#name').focus(), 550);
         });
       });
-      document.querySelector('#quote-form').addEventListener('submit', (event) => {
+      const quoteForm = document.querySelector<HTMLFormElement>('#quote-form')!;
+      const submitButton = quoteForm.querySelector<HTMLButtonElement>('.form-submit')!;
+      const submitLabel = document.querySelector('#submit-label')!;
+      const success = document.querySelector<HTMLElement>('#form-success')!;
+      const formError = document.querySelector<HTMLElement>('#form-error')!;
+
+      quoteForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-        const name = document.querySelector('#name').value.trim();
-        const property = document.querySelector('#property').value;
-        const success = document.querySelector('#form-success');
-        document.querySelector('#success-text').textContent = `${name}, registramos su solicitud de ${serviceSelect.value.toLowerCase()} para ${property.toLowerCase()}.`;
-        success.hidden = false;
-        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (submitButton.disabled || !quoteForm.reportValidity()) return;
+
+        const data = new FormData(quoteForm);
+        success.hidden = true;
+        formError.hidden = true;
+        submitButton.disabled = true;
+        submitLabel.textContent = 'Enviando…';
+        quoteForm.setAttribute('aria-busy', 'true');
+
+        try {
+          const response = await fetch(quoteForm.action, {
+            method: 'POST',
+            body: data,
+            headers: { Accept: 'application/json' },
+            signal: AbortSignal.timeout(20000),
+          });
+
+          if (!response.ok) {
+            formError.textContent = response.status === 429
+              ? 'Hay demasiados intentos de envío. Espere unos minutos y vuelva a intentarlo. Sus datos siguen aquí.'
+              : 'No se pudo enviar la solicitud. Revise los datos e inténtelo de nuevo en unos minutos. Sus datos siguen aquí.';
+            formError.hidden = false;
+            return;
+          }
+
+          quoteForm.reset();
+          success.hidden = false;
+          success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } catch {
+          formError.textContent = 'No pudimos confirmar el envío. Sus datos siguen aquí; revise su conexión e inténtelo de nuevo.';
+          formError.hidden = false;
+        } finally {
+          submitButton.disabled = false;
+          submitLabel.textContent = 'Enviar solicitud';
+          quoteForm.removeAttribute('aria-busy');
+        }
       });
       document.querySelector('#year').textContent = new Date().getFullYear();
     </script>
