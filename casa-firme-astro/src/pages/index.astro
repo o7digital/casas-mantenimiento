@@ -23,10 +23,22 @@ const commitments = [
   ["03", "Seguimiento", "por WhatsApp"],
 ];
 
-const propertyTypes = [
-  ["Residencial", "Conservamos casas y departamentos con intervenciones cuidadosas, limpias y pensadas para durar."],
-  ["Comercial", "Renovamos espacios de atención sin perder de vista la imagen, la operación y los tiempos del negocio."],
-  ["Corporativo", "Coordinamos mantenimiento y mejoras con procesos claros, reportes de avance y entregas verificables."],
+const aboutPrinciples = [
+  {
+    title: "Entender antes de intervenir.",
+    text: "Una mancha de humedad puede ser el síntoma, no el origen. Nuestro criterio es revisar de dónde viene el problema y explicar qué necesita atención antes de proponer una reparación.",
+    detail: "Diagnóstico que orienta la decisión.",
+  },
+  {
+    title: "Acordar antes de ejecutar.",
+    text: "El alcance, los materiales, los tiempos y el costo deben quedar claros desde el inicio. Si aparece algo que cambia lo acordado, corresponde explicarlo y revisarlo con usted antes de avanzar.",
+    detail: "Decisiones con información, sin presión.",
+  },
+  {
+    title: "Cuidar mientras trabajamos.",
+    text: "Entrar a una propiedad exige respeto por quienes la usan. Proteger superficies, mantener las herramientas en orden y retirar los residuos son parte del trabajo, tanto como el acabado final.",
+    detail: "Respeto por su espacio y su rutina.",
+  },
 ];
 
 const planBenefits = [
@@ -161,20 +173,44 @@ const projectCases = [
         </aside>
       </section>
 
-      <section class="promise section-pad" id="quienes-somos" aria-labelledby="about-title">
-        <div class="section-label">Quiénes somos</div>
-        <div class="promise-copy"><h2 id="about-title">Protegemos su inmueble.<br /><span>Aumentamos su valor.</span></h2><p>En Casa Firme nos dedicamos al mantenimiento integral de casas, oficinas y comercios. Cada intervención combina diagnóstico, ejecución responsable y seguimiento para mantener su propiedad segura, funcional y vigente.</p><a class="social-link" href="#comunidad">Conozca nuestra comunidad digital <span>↗</span></a></div>
-        <div class="seal" aria-hidden="true"><span>CUIDADO<br />INTEGRAL</span><b>✓</b></div>
-      </section>
-
-      <section class="presentation section-pad" aria-labelledby="presentation-title">
-        <div class="presentation-intro">
-          <p class="section-label">Carta de presentación</p>
-          <h2 id="presentation-title">Cuidamos el presente.<br /><em>Preservamos el futuro.</em></h2>
-          <p>Casa Firme acompaña a propietarios y empresas con una visión integral: detectar a tiempo, resolver con oficio y documentar cada avance. Así protegemos la inversión y elevamos el valor de cada espacio.</p>
+      <section class="about section-pad" id="quienes-somos" aria-labelledby="about-title">
+        <div class="about-intro">
+          <div class="about-copy">
+            <p class="section-label">Quiénes somos · Casa Firme</p>
+            <h2 id="about-title">Oficio para resolver.<br /><em>Criterio para cuidar.</em></h2>
+            <p class="about-lead">Somos Casa Firme. Nos dedicamos al mantenimiento, la reparación y la conservación de casas, oficinas y comercios.</p>
+            <p>Sabemos que detrás de cada inmueble hay una vida en marcha: una familia, un negocio, una jornada de trabajo. Por eso, cuidar una propiedad también significa entender cómo se usa, qué necesita y qué conviene conservar.</p>
+            <p>Combinamos la atención a fallas concretas con una mirada preventiva. La intención es que cada intervención resuelva una necesidad de hoy y ayude a tomar mejores decisiones sobre el cuidado de mañana.</p>
+          </div>
+          <aside class="about-note" aria-labelledby="about-criterion">
+            <span class="about-monogram" aria-hidden="true">CF</span>
+            <p class="section-label">Nuestro criterio</p>
+            <h3 id="about-criterion">Reparar lo necesario.<br /><em>Conservar lo que funciona.</em></h3>
+            <p>Dar mantenimiento también es saber cuándo ajustar, cuándo reparar y cuándo sustituir. Cada recomendación debe responder al estado del inmueble y al uso que usted le da.</p>
+            <div class="about-note-signature">Casa Firme <span>Mantenimiento integral</span></div>
+          </aside>
         </div>
-        <div class="property-types">
-          {propertyTypes.map(([title, copy], index) => <article><span>0{index + 1}</span><div><h3>{title}</h3><p>{copy}</p></div></article>)}
+
+        <div class="about-principles" aria-labelledby="about-principles-title">
+          <div class="about-principles-heading">
+            <p class="section-label">Lo que guía nuestro trabajo</p>
+            <h3 id="about-principles-title">La confianza se construye en los detalles.</h3>
+          </div>
+          <div class="about-principles-grid">
+            {aboutPrinciples.map(({ title, text, detail }, index) => (
+              <article>
+                <span class="about-number" aria-hidden="true">0{index + 1}</span>
+                <h4>{title}</h4>
+                <p>{text}</p>
+                <p class="about-principle-detail">{detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div class="about-next">
+          <p>Empiece por contarnos qué le preocupa de su propiedad.</p>
+          <a class="button button-dark" href="#cotizar">Conversemos sobre su espacio <span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
