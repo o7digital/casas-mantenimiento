@@ -324,16 +324,70 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
 
     <footer><a class="brand footer-brand" href="#inicio"><span class="brand-mark">CF</span><span><strong>CASA FIRME</strong><small>{t("Mantenimiento integral")}</small></span></a><p>{t("Su propiedad en buenas manos.")}</p><p class="copyright">© <span id="year"></span> Casa Firme</p></footer>
 
+    <script is:inline>
+      // Restore only a position explicitly saved by the language switch.
+      // Running after the markup avoids an animated trip through the page.
+      try {
+        const key = 'casa-firme-language-position';
+        const saved = JSON.parse(sessionStorage.getItem(key) || 'null');
+        if (saved && saved.path === location.pathname) {
+          sessionStorage.removeItem(key);
+          if (Date.now() - saved.time < 30000) {
+            const restore = () => {
+              const section = document.querySelectorAll('header.site-header, main > section, footer')[saved.section];
+              if (section) {
+                window.scrollTo({
+                  top: section.getBoundingClientRect().top + window.scrollY + Math.min(saved.offset, section.offsetHeight - 1),
+                  behavior: 'instant',
+                });
+              }
+            };
+            restore();
+            window.addEventListener('load', restore, { once: true });
+          }
+        }
+      } catch {
+        // Normal links remain usable when browser storage is unavailable.
+      }
+    </script>
+
     <script>
       const messages: Record<string, string> = JSON.parse(document.body.dataset.messages!);
       const t = (text: string) => messages[text] ?? text;
-      const updateLanguageLinks = () => {
-        document.querySelectorAll<HTMLAnchorElement>('.language-switch a').forEach(link => {
-          link.hash = window.location.hash;
+      document.querySelectorAll<HTMLAnchorElement>('.language-switch a').forEach(link => {
+        link.addEventListener('click', (event) => {
+          if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          const destination = new URL(link.href);
+          if (destination.pathname === window.location.pathname) {
+            event.preventDefault();
+            return;
+          }
+
+          const sections = Array.from(document.querySelectorAll<HTMLElement>('header.site-header, main > section, footer'));
+          let sectionIndex = 0;
+          sections.forEach((section, index) => {
+            if (section.getBoundingClientRect().top <= 1) sectionIndex = index;
+          });
+          const section = sections[sectionIndex];
+          const offset = Math.max(0, -section.getBoundingClientRect().top);
+
+          // The current scroll position is authoritative; the URL hash may be stale.
+          destination.hash = '';
+          try {
+            sessionStorage.setItem('casa-firme-language-position', JSON.stringify({
+              path: destination.pathname,
+              section: sectionIndex,
+              offset,
+              time: Date.now(),
+            }));
+          } catch {
+            // Fall back to the visible section, never to an old contact anchor.
+            destination.hash = section.id;
+          }
+          event.preventDefault();
+          window.location.assign(destination.href);
         });
-      };
-      updateLanguageLinks();
-      window.addEventListener('hashchange', updateLanguageLinks);
+      });
 
       const menuToggle = document.querySelector('.menu-toggle');
       const mobileMenu = document.querySelector('#mobile-menu');
