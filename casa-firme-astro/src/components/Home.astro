@@ -1,0 +1,415 @@
+---
+import "../styles/global.css";
+import english from "../i18n/en.json";
+
+interface Props { lang: "es" | "en" }
+const { lang } = Astro.props;
+const t = (text: string) => lang === "en" ? (english as Record<string, string>)[text] ?? text : text;
+const canonical = new URL(lang === "en" ? "/en/" : "/", Astro.site);
+
+
+const navigation = [
+  { href: "#quienes-somos", label: t("Quiénes somos") },
+  { href: "#servicios", label: t("Nuestros Servicios") },
+  { href: "#proyectos", label: t("Proyectos") },
+  { href: "#cotizar", label: t("Contacto") },
+];
+
+const services = [
+  { number: "01", icon: "⌁", title: t("Mantenimiento residencial"), text: t("Inspecciones, ajustes y reparaciones para conservar su hogar en óptimas condiciones."), value: t("Mantenimiento general"), featured: true },
+  { number: "02", icon: "ϟ", title: t("Electricidad"), text: t("Instalaciones, contactos, iluminación y diagnóstico de fallas eléctricas."), value: t("Electricidad") },
+  { number: "03", icon: "◒", title: t("Plomería"), text: t("Fugas, grifería, sanitarios, tuberías y soluciones preventivas."), value: t("Plomería") },
+  { number: "04", icon: "◇", title: t("Pintura y acabados"), text: t("Renovación de interiores y exteriores con acabados limpios y duraderos."), value: t("Pintura y acabados") },
+  { number: "05", icon: "⌂", title: t("Impermeabilización"), text: t("Revisión, prevención y tratamiento profesional contra humedad y filtraciones."), value: t("Impermeabilización") },
+  { number: "06", icon: "▤", title: t("Oficinas y comercios"), text: t("Mantenimiento programado para espacios de trabajo siempre operativos."), value: t("Oficinas y comercios") },
+];
+
+const commitments = [
+  ["01", t("Diagnóstico"), t("profesional")],
+  ["02", t("Presupuesto"), t("transparente")],
+  ["03", t("Seguimiento"), t("por WhatsApp")],
+];
+
+const aboutPrinciples = [
+  {
+    title: t("Entender antes de intervenir."),
+    text: t("Una mancha de humedad puede ser el síntoma, no el origen. Nuestro criterio es revisar de dónde viene el problema y explicar qué necesita atención antes de proponer una reparación."),
+    detail: t("Diagnóstico que orienta la decisión."),
+  },
+  {
+    title: t("Acordar antes de ejecutar."),
+    text: t("El alcance, los materiales, los tiempos y el costo deben quedar claros desde el inicio. Si aparece algo que cambia lo acordado, corresponde explicarlo y revisarlo con usted antes de avanzar."),
+    detail: t("Decisiones con información, sin presión."),
+  },
+  {
+    title: t("Cuidar mientras trabajamos."),
+    text: t("Entrar a una propiedad exige respeto por quienes la usan. Proteger superficies, mantener las herramientas en orden y retirar los residuos son parte del trabajo, tanto como el acabado final."),
+    detail: t("Respeto por su espacio y su rutina."),
+  },
+];
+
+const planBenefits = [
+  ["01", t("Revisión general programada"), t("Detectamos desgaste, fugas y riesgos antes de que crezcan.")],
+  ["02", t("Prioridad de atención"), t("Respuesta preferente cuando necesite una intervención.")],
+  ["03", t("Historial de mantenimiento"), t("Registro claro de servicios, hallazgos y recomendaciones.")],
+];
+
+const process = [
+  ["1", t("Cotización sin compromiso"), t("Conocemos el inmueble, escuchamos sus necesidades y definimos el alcance.")],
+  ["2", t("Contrato formal"), t("Acordamos por escrito costos, materiales, tiempos y la garantía del trabajo.")],
+  ["3", t("Reportes de avance"), t("Documentamos cada etapa y mantenemos comunicación clara durante la ejecución.")],
+  ["4", t("Entrega limpia"), t("Revisamos los acabados, retiramos residuos y entregamos el espacio listo para usarse.")],
+];
+
+const projectTypes = [
+  ["01", t("Mantenimiento preventivo y correctivo"), t("Impermeabilización, plomería y sistemas eléctricos para evitar fallas y recuperar la operación de cada espacio.")],
+  ["02", t("Remodelaciones integrales"), t("Modernización coordinada de cocinas, baños, fachadas y locales comerciales, del diagnóstico a los acabados.")],
+  ["03", t("Conservación de inmuebles"), t("Pintura general, resanes y restauración de áreas comunes para prolongar la vida y el valor de la propiedad.")],
+];
+
+const portfolioStories = [
+  {
+    number: "01",
+    eyebrow: t("Antes y después"),
+    title: t("De un espacio deteriorado a un ambiente renovado."),
+    text: t("La misma perspectiva permite comprobar la transformación: control de humedad, renovación de instalaciones y acabados limpios."),
+    image: "/proyecto-antes-despues.webp",
+    alt: t("Comparación antes y después de una remodelación de baño con humedad corregida y nuevos acabados"),
+    width: 1600,
+    height: 1067,
+  },
+  {
+    number: "02",
+    eyebrow: t("Zoom a los detalles"),
+    title: t("La calidad se reconoce de cerca."),
+    text: t("Instalaciones ordenadas, cortes precisos, pintura uniforme, carpintería cuidada y pisos correctamente alineados."),
+    image: "/detalles-acabados.webp",
+    alt: t("Detalles de instalación de plomería, encuentro de pintura con carpintería y colocación precisa de piso"),
+    width: 1600,
+    height: 901,
+  },
+  {
+    number: "03",
+    eyebrow: t("Seguridad y orden"),
+    title: t("Protegemos a las personas y al inmueble."),
+    text: t("Personal uniformado, equipo de protección, superficies cubiertas, herramientas organizadas y limpieza durante toda la obra."),
+    image: "/equipo-seguridad-orden.webp",
+    alt: t("Técnicos uniformados con equipo de protección trabajando en una obra residencial limpia y ordenada"),
+    width: 1600,
+    height: 1067,
+  },
+];
+
+const projectCases = [
+  {
+    number: "01",
+    type: t("Mantenimiento correctivo"),
+    title: t("Control de humedad e impermeabilización"),
+    challenge: t("Filtraciones recurrentes, manchas interiores y desprendimiento de pintura durante la temporada de lluvias."),
+    solution: t("Inspección de pendientes y puntos críticos, resane, sellado de fisuras y aplicación del sistema impermeable compatible con la superficie."),
+    materials: t("Sellador, malla de refuerzo y sistema impermeabilizante especificados tras el diagnóstico."),
+    timing: t("Cronograma definido después de medir el área y revisar las condiciones climáticas."),
+    warranty: t("Respaldo por escrito; la ficha contractual indica los meses o años según el sistema y fabricante elegidos."),
+  },
+  {
+    number: "02",
+    type: t("Remodelación integral"),
+    title: t("Modernización de baño residencial"),
+    challenge: t("Instalaciones antiguas, distribución poco funcional y acabados afectados por humedad persistente."),
+    solution: t("Corrección de instalaciones, impermeabilización de zonas húmedas, colocación de recubrimientos y renovación de mobiliario y accesorios."),
+    materials: t("Tubería, adhesivos, boquilla, recubrimientos y selladores definidos en la propuesta aprobada."),
+    timing: t("Programa por etapas para coordinar demoliciones, instalaciones, secados y acabados."),
+    warranty: t("Garantía de mano de obra y materiales formalizada en contrato con vigencia claramente indicada."),
+  },
+  {
+    number: "03",
+    type: t("Conservación de inmuebles"),
+    title: t("Recuperación de fachada y áreas comunes"),
+    challenge: t("Fisuras, pintura degradada y una imagen exterior que ya no correspondía con el valor del inmueble."),
+    solution: t("Preparación de superficies, resanes localizados, sellado, pintura y restauración ordenada de elementos visibles."),
+    materials: t("Resanadores, selladores y recubrimientos seleccionados según exposición, sustrato y acabado requerido."),
+    timing: t("Plan de trabajo acordado para mantener accesos seguros y reducir afectaciones a los usuarios."),
+    warranty: t("Periodo de respaldo expresado en meses o años dentro de la cotización y el contrato de obra."),
+  },
+];
+
+const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar solicitud", "Enviando…", "Hay demasiados intentos de envío. Espere unos minutos y vuelva a intentarlo. Sus datos siguen aquí.", "No se pudo enviar la solicitud. Revise los datos e inténtelo de nuevo en unos minutos. Sus datos siguen aquí.", "No pudimos confirmar el envío. Sus datos siguen aquí; revise su conexión e inténtelo de nuevo."].map(key => [key, t(key)]));
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={t("Mantenimiento profesional, preventivo y correctivo para casas y oficinas.")} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={new URL("/", Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL("/en/", Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL("/", Astro.site)} />
+    <meta name="theme-color" content="#111b1a" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{t("Casa Firme | Mantenimiento residencial")}</title>
+  </head>
+  <body data-messages={JSON.stringify(messages)}>
+    <header class="site-header" id="inicio">
+      <a class="brand" href="#inicio" aria-label={t("Casa Firme, inicio")}>
+        <span class="brand-mark" aria-hidden="true">CF</span>
+        <span><strong>CASA FIRME</strong><small>{t("Mantenimiento integral")}</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label={t("Navegación principal")}>
+        {navigation.map(({ href, label }) => <a href={href}>{label}</a>)}
+      </nav>
+      <div class="header-actions">
+        <nav class="language-switch" aria-label={t("Idioma")}>
+          <a href="/" lang="es" hreflang="es" aria-label="Español" aria-current={lang === "es" ? "page" : undefined}>ES</a>
+          <a href="/en/" lang="en" hreflang="en" aria-label="English" aria-current={lang === "en" ? "page" : undefined}>EN</a>
+        </nav>
+        <a class="header-cta" href="#cotizar">{t("Solicitar visita")} <span>↗</span></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label={t("Abrir menú")}>
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-menu" id="mobile-menu" aria-label={t("Navegación móvil")} hidden>
+        {navigation.map(({ href, label }, index) => <a href={href}><span>0{index + 1}</span>{label}</a>)}
+        <a class="button button-primary" href="#cotizar">{t("Solicitar visita")} <span>→</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-image" role="img" aria-label={t("Casa contemporánea con servicio profesional de mantenimiento")}></div>
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <p class="eyebrow"><span></span> {t("Mantenimiento residencial y corporativo")}</p>
+          <h1 id="hero-title">{t("Su propiedad,")}<br /><em>{t("siempre en orden.")}</em></h1>
+          <p class="hero-copy">{t("Cuidamos cada detalle de su casa u oficina con atención profesional, seguimiento claro y soluciones que duran.")}</p>
+          <div class="hero-actions"><a class="button button-primary" href="#cotizar">{t("Agendar una visita")} <span>→</span></a><a class="button button-ghost" href="#servicios">{t("Conocer servicios")}</a></div>
+        </div>
+        <aside class="trust-panel" aria-label={t("Compromisos de servicio")}>
+          {commitments.map(([number, first, second]) => <div><strong>{number}</strong><span>{first}<br />{second}</span></div>)}
+        </aside>
+      </section>
+
+      <section class="about section-pad" id="quienes-somos" aria-labelledby="about-title">
+        <div class="about-intro">
+          <div class="about-copy">
+            <p class="section-label">{t("Quiénes somos · Casa Firme")}</p>
+            <h2 id="about-title">{t("Oficio para resolver.")}<br /><em>{t("Criterio para cuidar.")}</em></h2>
+            <p class="about-lead">{t("Somos Casa Firme. Nos dedicamos al mantenimiento, la reparación y la conservación de casas, oficinas y comercios.")}</p>
+            <p>{t("Sabemos que detrás de cada inmueble hay una vida en marcha: una familia, un negocio, una jornada de trabajo. Por eso, cuidar una propiedad también significa entender cómo se usa, qué necesita y qué conviene conservar.")}</p>
+            <p>{t("Combinamos la atención a fallas concretas con una mirada preventiva. La intención es que cada intervención resuelva una necesidad de hoy y ayude a tomar mejores decisiones sobre el cuidado de mañana.")}</p>
+          </div>
+          <aside class="about-note" aria-labelledby="about-criterion">
+            <span class="about-monogram" aria-hidden="true">CF</span>
+            <p class="section-label">{t("Nuestro criterio")}</p>
+            <h3 id="about-criterion">{t("Reparar lo necesario.")}<br /><em>{t("Conservar lo que funciona.")}</em></h3>
+            <p>{t("Dar mantenimiento también es saber cuándo ajustar, cuándo reparar y cuándo sustituir. Cada recomendación debe responder al estado del inmueble y al uso que usted le da.")}</p>
+            <div class="about-note-signature">Casa Firme <span>{t("Mantenimiento integral")}</span></div>
+          </aside>
+        </div>
+
+        <div class="about-principles" aria-labelledby="about-principles-title">
+          <div class="about-principles-heading">
+            <p class="section-label">{t("Lo que guía nuestro trabajo")}</p>
+            <h3 id="about-principles-title">{t("La confianza se construye en los detalles.")}</h3>
+          </div>
+          <div class="about-principles-grid">
+            {aboutPrinciples.map(({ title, text, detail }, index) => (
+              <article>
+                <span class="about-number" aria-hidden="true">0{index + 1}</span>
+                <h4>{title}</h4>
+                <p>{text}</p>
+                <p class="about-principle-detail">{detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div class="about-next">
+          <p>{t("Empiece por contarnos qué le preocupa de su propiedad.")}</p>
+          <a class="button button-dark" href="#cotizar">{t("Conversemos sobre su espacio")} <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section class="portfolio section-pad" id="portafolio" aria-labelledby="portfolio-title">
+        <div class="section-heading"><div><p class="section-label">{t("Portafolio visual")}</p><h2 id="portfolio-title">{t("El cuidado se ve")}<br />{t("en cada detalle.")}</h2></div><p>{t("Transformaciones reales, acabados pulcros y equipos que trabajan con seguridad, orden y respeto por su propiedad.")}</p></div>
+        <div class="portfolio-gallery">
+          {portfolioStories.map((story) => (
+            <article class="portfolio-story">
+              <img src={story.image} alt={story.alt} loading="lazy" width={story.width} height={story.height} />
+              <div class="portfolio-story-copy"><span>{story.number}</span><div><p>{story.eyebrow}</p><h3>{story.title}</h3><div class="story-description">{story.text}</div></div></div>
+            </article>
+          ))}
+        </div>
+        <div class="portfolio-proof" aria-label={t("Qué documentamos en cada proyecto")}>
+          <p>{t("Una obra bien hecha también debe poder comprobarse.")}</p>
+          <ul><li>{t("Estado inicial")}</li><li>{t("Avance por etapas")}</li><li>{t("Detalle de acabados")}</li><li>{t("Entrega limpia")}</li></ul>
+        </div>
+      </section>
+
+      <section class="projects section-pad" id="proyectos" aria-labelledby="projects-title">
+        <div class="section-heading light"><div><p class="section-label">{t("Experiencia técnica")}</p><h2 id="projects-title">{t("Soluciones para cada etapa del inmueble.")}</h2></div><p>{t("Atendemos desde una corrección puntual hasta una remodelación completa, siempre con alcance, tiempos y respaldo claros.")}</p></div>
+        <div class="project-types">{projectTypes.map(([number, title, copy]) => <article><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
+        <div class="case-heading-main"><p class="section-label">{t("Proyectos realizados · fichas técnicas")}</p><h3>{t("Del reto inicial al respaldo final.")}</h3><p>{t("Cada expediente reúne el diagnóstico, la solución, los materiales, el tiempo de ejecución y la garantía acordada.")}</p></div>
+        <div class="case-grid">
+          {projectCases.map((project) => (
+            <article class="case-card">
+              <header><span>{project.number}</span><p>{project.type}</p><h3>{project.title}</h3></header>
+              <dl>
+                <div><dt>{t("Reto inicial")}</dt><dd>{project.challenge}</dd></div>
+                <div><dt>{t("Solución aplicada")}</dt><dd>{project.solution}</dd></div>
+                <div><dt>{t("Materiales")}</dt><dd>{project.materials}</dd></div>
+                <div><dt>{t("Tiempo de ejecución")}</dt><dd>{project.timing}</dd></div>
+                <div><dt>{t("Garantía")}</dt><dd>{project.warranty}</dd></div>
+              </dl>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="services section-pad" id="servicios" aria-labelledby="services-title">
+        <div class="section-heading"><div><p class="section-label">{t("Nuestros Servicios")}</p><h2 id="services-title">{t("Expertos para cada detalle")}</h2></div><p>{t("Desde una reparación puntual hasta el cuidado permanente de toda la propiedad.")}</p></div>
+        <div class="service-grid">
+          {services.map((service) => (
+            <article class:list={["service-card", { "service-featured": service.featured }]}>
+              <div class="service-top"><span class="service-number">{service.number}</span><span class="service-icon" aria-hidden="true">{service.icon}</span></div>
+              <div><h3>{service.title}</h3><p>{service.text}</p></div>
+              <a class="text-link service-select" href="#cotizar" data-service={service.value}>{t("Solicitar servicio")} <span>→</span></a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="plan section-pad" id="planes" aria-labelledby="plan-title">
+        <div class="plan-visual"><div class="plan-image" role="img" aria-label={t("Detalle arquitectónico de una casa bien cuidada")}></div><div class="plan-badge"><strong>12</strong><span>{t("meses de")}<br />{t("tranquilidad")}</span></div></div>
+        <div class="plan-content">
+          <p class="section-label">{t("Plan Casa Firme")}</p><h2 id="plan-title">{t("Prevenir cuesta menos que reparar.")}</h2>
+          <p class="plan-intro">{t("Un programa anual diseñado para anticiparse a los problemas y proteger el valor de su propiedad.")}</p>
+          <ul class="plan-list">{planBenefits.map(([number, title, copy]) => <li><span>{number}</span><div><strong>{title}</strong><p>{copy}</p></div></li>)}</ul>
+          <a class="button button-dark service-select" href="#cotizar" data-service={t("Plan anual")}>{t("Conocer el plan anual")} <span>→</span></a>
+        </div>
+      </section>
+
+      <section class="process section-pad" id="proceso" aria-labelledby="process-title">
+        <div class="section-heading light"><div><p class="section-label">{t("Así de fácil")}</p><h2 id="process-title">{t("Cuidamos su espacio")}<br />{t("de principio a fin.")}</h2></div></div>
+        <div class="process-grid">{process.map(([number, title, copy]) => <article><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
+      </section>
+
+      <section class="community section-pad" id="comunidad" aria-labelledby="community-title">
+        <div><p class="section-label">{t("Comunidad digital")}</p><h2 id="community-title">{t("Vea cómo cuidamos cada obra, día a día.")}</h2></div>
+        <div><p>{t("En Instagram compartimos avances, transformaciones y consejos prácticos para conservar mejor su inmueble.")}</p><a class="button button-dark" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label={t("Visitar Instagram, abre en una nueva pestaña")}>{t("Visitar Instagram")} <span>↗</span></a></div>
+      </section>
+
+      <section class="quote section-pad" id="cotizar" aria-labelledby="quote-title">
+        <div class="quote-intro"><p class="section-label">{t("Contacto")}</p><h2 id="quote-title">{t("Hablemos de su propiedad.")}</h2><p>{t("Déjenos sus datos para preparar una cotización sin compromiso y atenderle de forma ágil.")}</p><p>{t("Incluya su correo para que podamos responderle. Si prefiere que le contactemos por teléfono o WhatsApp, deje también su número e indíquelo en el mensaje.")}</p><div class="availability"><i></i><span>{t("Atención en casas, oficinas y comercios")}</span></div></div>
+        <form class="quote-form" id="quote-form" action="https://formspree.io/f/moeqrljv" method="POST" aria-describedby="form-note">
+          <input type="hidden" name="language" value={lang} />
+          <input type="hidden" name="_subject" value={t("Nueva solicitud de contacto — Casa Firme")} />
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden />
+          <label>{t("Nombre completo")}<input id="name" name="name" type="text" autocomplete="name" placeholder={t("¿Cómo podemos llamarle?")} required /></label>
+          <label>{t("Correo electrónico")}<input id="email" name="email" type="email" autocomplete="email" placeholder={t("usted@ejemplo.com")} required /></label>
+          <label>{t("Teléfono o WhatsApp (opcional)")}<input id="phone" name="phone" type="tel" autocomplete="tel" placeholder={t("Incluya el código de país")} /></label>
+          <div class="field-row">
+            <label>{t("Tipo de propiedad")}<select id="property" name="property"><option>{t("Casa habitación")}</option><option>{t("Departamento")}</option><option>{t("Oficina")}</option><option>{t("Comercio")}</option></select></label>
+            <label>{t("Servicio")}<select id="service" name="service"><option>{t("Mantenimiento general")}</option><option>{t("Electricidad")}</option><option>{t("Plomería")}</option><option>{t("Pintura y acabados")}</option><option>{t("Impermeabilización")}</option><option>{t("Oficinas y comercios")}</option><option>{t("Plan anual")}</option></select></label>
+          </div>
+          <label>{t("¿Qué necesita resolver?")}<textarea id="details" name="details" rows="3" placeholder={t("Cuéntenos brevemente...")}></textarea></label>
+          <button class="button button-primary form-submit" type="submit"><span id="submit-label">{t("Enviar solicitud")}</span><span aria-hidden="true">→</span></button>
+          <p class="form-note" id="form-note">{t("Sin compromiso. Usaremos sus datos para responder a su solicitud.")}</p>
+          <div class="form-success" id="form-success" role="status" aria-live="polite" hidden><strong>{t("Solicitud enviada.")}</strong><span>{t("Gracias por escribirnos. Nos pondremos en contacto con usted para revisar los detalles.")}</span></div>
+          <p class="form-error" id="form-error" role="alert" hidden></p>
+        </form>
+      </section>
+    </main>
+
+    <footer><a class="brand footer-brand" href="#inicio"><span class="brand-mark">CF</span><span><strong>CASA FIRME</strong><small>{t("Mantenimiento integral")}</small></span></a><p>{t("Su propiedad en buenas manos.")}</p><p class="copyright">© <span id="year"></span> Casa Firme</p></footer>
+
+    <script>
+      const messages: Record<string, string> = JSON.parse(document.body.dataset.messages!);
+      const t = (text: string) => messages[text] ?? text;
+      const updateLanguageLinks = () => {
+        document.querySelectorAll<HTMLAnchorElement>('.language-switch a').forEach(link => {
+          link.hash = window.location.hash;
+        });
+      };
+      updateLanguageLinks();
+      window.addEventListener('hashchange', updateLanguageLinks);
+
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mobileMenu = document.querySelector('#mobile-menu');
+      const closeMenu = () => {
+        mobileMenu.hidden = true;
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', t("Abrir menú"));
+        document.body.classList.remove('menu-open');
+      };
+      menuToggle.addEventListener('click', () => {
+        const willOpen = mobileMenu.hidden;
+        mobileMenu.hidden = !willOpen;
+        menuToggle.setAttribute('aria-expanded', String(willOpen));
+        menuToggle.setAttribute('aria-label', willOpen ? t("Cerrar menú") : t("Abrir menú"));
+        document.body.classList.toggle('menu-open', willOpen);
+      });
+      mobileMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 1200) closeMenu();
+      });
+
+      const serviceSelect = document.querySelector<HTMLSelectElement>('#service')!;
+      const quoteSection = document.querySelector('#cotizar');
+      document.querySelectorAll<HTMLAnchorElement>('.service-select').forEach((link) => {
+        link.addEventListener('click', () => {
+          serviceSelect.value = link.dataset.service!;
+          quoteSection.scrollIntoView({ behavior: 'smooth' });
+          window.setTimeout(() => document.querySelector('#name').focus(), 550);
+        });
+      });
+      const quoteForm = document.querySelector<HTMLFormElement>('#quote-form')!;
+      const submitButton = quoteForm.querySelector<HTMLButtonElement>('.form-submit')!;
+      const submitLabel = document.querySelector('#submit-label')!;
+      const success = document.querySelector<HTMLElement>('#form-success')!;
+      const formError = document.querySelector<HTMLElement>('#form-error')!;
+
+      quoteForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (submitButton.disabled || !quoteForm.reportValidity()) return;
+
+        const data = new FormData(quoteForm);
+        success.hidden = true;
+        formError.hidden = true;
+        submitButton.disabled = true;
+        submitLabel.textContent = t("Enviando…");
+        quoteForm.setAttribute('aria-busy', 'true');
+
+        try {
+          const response = await fetch(quoteForm.action, {
+            method: 'POST',
+            body: data,
+            headers: { Accept: 'application/json' },
+            signal: AbortSignal.timeout(20000),
+          });
+
+          if (!response.ok) {
+            formError.textContent = response.status === 429
+              ? t("Hay demasiados intentos de envío. Espere unos minutos y vuelva a intentarlo. Sus datos siguen aquí.")
+              : t("No se pudo enviar la solicitud. Revise los datos e inténtelo de nuevo en unos minutos. Sus datos siguen aquí.");
+            formError.hidden = false;
+            return;
+          }
+
+          quoteForm.reset();
+          success.hidden = false;
+          success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } catch {
+          formError.textContent = t("No pudimos confirmar el envío. Sus datos siguen aquí; revise su conexión e inténtelo de nuevo.");
+          formError.hidden = false;
+        } finally {
+          submitButton.disabled = false;
+          submitLabel.textContent = t("Enviar solicitud");
+          quoteForm.removeAttribute('aria-busy');
+        }
+      });
+      document.querySelector('#year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
