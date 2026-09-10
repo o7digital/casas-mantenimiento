@@ -1,6 +1,13 @@
 ---
 import "../styles/global.css";
 
+const navigation = [
+  { href: "#quienes-somos", label: "Quiénes somos" },
+  { href: "#servicios", label: "Nuestros Servicios" },
+  { href: "#proyectos", label: "Proyectos" },
+  { href: "#cotizar", label: "Contacto" },
+];
+
 const services = [
   { number: "01", icon: "⌁", title: "Mantenimiento residencial", text: "Inspecciones, ajustes y reparaciones para conservar su hogar en óptimas condiciones.", value: "Mantenimiento general", featured: true },
   { number: "02", icon: "ϟ", title: "Electricidad", text: "Instalaciones, contactos, iluminación y diagnóstico de fallas eléctricas.", value: "Electricidad" },
@@ -125,7 +132,7 @@ const projectCases = [
         <span><strong>CASA FIRME</strong><small>Mantenimiento integral</small></span>
       </a>
       <nav class="desktop-nav" aria-label="Navegación principal">
-        <a href="#servicios">Servicios</a><a href="#portafolio">Portafolio</a><a href="#proyectos">Proyectos</a><a href="#proceso">Cómo trabajamos</a>
+        {navigation.map(({ href, label }) => <a href={href}>{label}</a>)}
       </nav>
       <div class="header-actions">
         <a class="header-cta" href="#cotizar">Solicitar visita <span>↗</span></a>
@@ -134,10 +141,7 @@ const projectCases = [
         </button>
       </div>
       <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación móvil" hidden>
-        <a href="#servicios"><span>01</span>Servicios</a>
-        <a href="#portafolio"><span>02</span>Portafolio</a>
-        <a href="#proyectos"><span>03</span>Proyectos</a>
-        <a href="#proceso"><span>04</span>Cómo trabajamos</a>
+        {navigation.map(({ href, label }, index) => <a href={href}><span>0{index + 1}</span>{label}</a>)}
         <a class="button button-primary" href="#cotizar">Solicitar visita <span>→</span></a>
       </nav>
     </header>
@@ -157,9 +161,9 @@ const projectCases = [
         </aside>
       </section>
 
-      <section class="promise section-pad">
-        <div class="section-label">Nuestra promesa</div>
-        <div class="promise-copy"><h2>Protegemos su inmueble.<br /><span>Aumentamos su valor.</span></h2><p>Más que reparar, conservamos lo que usted ha construido. Cada intervención combina diagnóstico, ejecución responsable y seguimiento para mantener su propiedad segura, funcional y vigente.</p><a class="social-link" href="#comunidad">Conozca nuestra comunidad digital <span>↗</span></a></div>
+      <section class="promise section-pad" id="quienes-somos" aria-labelledby="about-title">
+        <div class="section-label">Quiénes somos</div>
+        <div class="promise-copy"><h2 id="about-title">Protegemos su inmueble.<br /><span>Aumentamos su valor.</span></h2><p>En Casa Firme nos dedicamos al mantenimiento integral de casas, oficinas y comercios. Cada intervención combina diagnóstico, ejecución responsable y seguimiento para mantener su propiedad segura, funcional y vigente.</p><a class="social-link" href="#comunidad">Conozca nuestra comunidad digital <span>↗</span></a></div>
         <div class="seal" aria-hidden="true"><span>CUIDADO<br />INTEGRAL</span><b>✓</b></div>
       </section>
 
@@ -211,7 +215,7 @@ const projectCases = [
       </section>
 
       <section class="services section-pad" id="servicios" aria-labelledby="services-title">
-        <div class="section-heading"><div><p class="section-label">Servicios</p><h2 id="services-title">Expertos para cada detalle</h2></div><p>Desde una reparación puntual hasta el cuidado permanente de toda la propiedad.</p></div>
+        <div class="section-heading"><div><p class="section-label">Nuestros Servicios</p><h2 id="services-title">Expertos para cada detalle</h2></div><p>Desde una reparación puntual hasta el cuidado permanente de toda la propiedad.</p></div>
         <div class="service-grid">
           {services.map((service) => (
             <article class:list={["service-card", { "service-featured": service.featured }]}>
@@ -244,7 +248,7 @@ const projectCases = [
       </section>
 
       <section class="quote section-pad" id="cotizar" aria-labelledby="quote-title">
-        <div class="quote-intro"><p class="section-label">Solicite un presupuesto</p><h2 id="quote-title">Hablemos de su propiedad.</h2><p>Déjenos sus datos para preparar una cotización sin compromiso y atenderle de forma ágil.</p><div class="contact-channels"><span>Teléfono</span><span>Correo</span><span>WhatsApp corporativo</span></div><div class="availability"><i></i><span>Atención en casas, oficinas y comercios</span></div></div>
+        <div class="quote-intro"><p class="section-label">Contacto</p><h2 id="quote-title">Hablemos de su propiedad.</h2><p>Déjenos sus datos para preparar una cotización sin compromiso y atenderle de forma ágil.</p><div class="contact-channels"><span>Teléfono</span><span>Correo</span><span>WhatsApp corporativo</span></div><div class="availability"><i></i><span>Atención en casas, oficinas y comercios</span></div></div>
         <form class="quote-form" id="quote-form">
           <label>Nombre completo<input id="name" name="name" type="text" placeholder="¿Cómo podemos llamarle?" required /></label>
           <div class="field-row">
