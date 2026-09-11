@@ -5,20 +5,20 @@
     "description": "Fachadas y espacios residenciales, durante la obra y con sus acabados.",
     "photos": [
       {
-        "src": "/proyectos/consultorios-vivienda-01.webp",
-        "thumbnail": "/proyectos/consultorios-vivienda-01-720.webp",
-        "width": 1599,
-        "height": 1156,
-        "thumbnailWidth": 720,
-        "alt": "Vista general de la fachada con acceso cubierto y acabado en tono ocre"
-      },
-      {
         "src": "/proyectos/consultorios-vivienda-02.webp",
         "thumbnail": "/proyectos/consultorios-vivienda-02-720.webp",
         "width": 1600,
         "height": 778,
         "thumbnailWidth": 720,
         "alt": "Fachada durante la obra, con muros expuestos y materiales de construcción"
+      },
+      {
+        "src": "/proyectos/consultorios-vivienda-01.webp",
+        "thumbnail": "/proyectos/consultorios-vivienda-01-720.webp",
+        "width": 1599,
+        "height": 1156,
+        "thumbnailWidth": 720,
+        "alt": "Vista general de la fachada con acceso cubierto y acabado en tono ocre"
       },
       {
         "src": "/proyectos/consultorios-vivienda-03.webp",
@@ -44,14 +44,6 @@
         "alt": "Sala de reuniones durante la obra, con plafones e instalaciones en proceso"
       },
       {
-        "src": "/proyectos/oficinas-01.webp",
-        "thumbnail": "/proyectos/oficinas-01-720.webp",
-        "width": 1600,
-        "height": 1068,
-        "thumbnailWidth": 720,
-        "alt": "Área abierta de oficinas con estaciones de trabajo y sillas ergonómicas"
-      },
-      {
         "src": "/proyectos/oficinas-02.webp",
         "thumbnail": "/proyectos/oficinas-02-720.webp",
         "width": 1600,
@@ -60,20 +52,12 @@
         "alt": "Sala de reuniones con ventanales y plafones circulares"
       },
       {
-        "src": "/proyectos/oficinas-04.webp",
-        "thumbnail": "/proyectos/oficinas-04-720.webp",
-        "width": 1599,
-        "height": 1122,
-        "thumbnailWidth": 720,
-        "alt": "Sala de juntas con mesa central, sillas y plafón de listones de madera"
-      },
-      {
-        "src": "/proyectos/oficinas-05.webp",
-        "thumbnail": "/proyectos/oficinas-05-720.webp",
+        "src": "/proyectos/oficinas-01.webp",
+        "thumbnail": "/proyectos/oficinas-01-720.webp",
         "width": 1600,
-        "height": 1200,
+        "height": 1068,
         "thumbnailWidth": 720,
-        "alt": "Espacio común de oficinas con mesas altas e iluminación suspendida"
+        "alt": "Área abierta de oficinas con estaciones de trabajo y sillas ergonómicas"
       },
       {
         "src": "/proyectos/oficinas-06.webp",
@@ -84,12 +68,28 @@
         "alt": "Área de oficinas durante la obra con instalaciones expuestas y mobiliario protegido"
       },
       {
-        "src": "/proyectos/oficinas-07.webp",
-        "thumbnail": "/proyectos/oficinas-07-720.webp",
+        "src": "/proyectos/oficinas-05.webp",
+        "thumbnail": "/proyectos/oficinas-05-720.webp",
         "width": 1600,
         "height": 1200,
         "thumbnailWidth": 720,
-        "alt": "Espacio interior con ventanales curvos y piso de madera"
+        "alt": "Espacio común de oficinas con mesas altas e iluminación suspendida"
+      },
+      {
+        "src": "/proyectos/oficinas-04.webp",
+        "thumbnail": "/proyectos/oficinas-04-720.webp",
+        "width": 1599,
+        "height": 1122,
+        "thumbnailWidth": 720,
+        "alt": "Sala de juntas con mesa central, sillas y plafón de listones de madera"
+      },
+      {
+        "src": "/proyectos/oficinas-09.webp",
+        "thumbnail": "/proyectos/oficinas-09-720.webp",
+        "width": 1600,
+        "height": 1200,
+        "thumbnailWidth": 720,
+        "alt": "Vista del espacio común con mesa circular y revestimientos de madera"
       },
       {
         "src": "/proyectos/oficinas-08.webp",
@@ -100,12 +100,12 @@
         "alt": "Detalle de mesa circular y acabados de madera junto a los ventanales"
       },
       {
-        "src": "/proyectos/oficinas-09.webp",
-        "thumbnail": "/proyectos/oficinas-09-720.webp",
+        "src": "/proyectos/oficinas-07.webp",
+        "thumbnail": "/proyectos/oficinas-07-720.webp",
         "width": 1600,
         "height": 1200,
         "thumbnailWidth": 720,
-        "alt": "Vista del espacio común con mesa circular y revestimientos de madera"
+        "alt": "Espacio interior con ventanales curvos y piso de madera"
       },
       {
         "src": "/proyectos/oficinas-10.webp",
