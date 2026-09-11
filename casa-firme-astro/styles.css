@@ -224,7 +224,7 @@ h1 em { color: var(--gold-bright); font-weight: 400; }
 .button-dark { background: var(--ink); color: var(--white); }
 
 .process { color: var(--white); background: var(--deep); position: relative; overflow: hidden; }
-.process::after { content: "CF"; position: absolute; right: -35px; top: -105px; font-family: var(--display); font-size: 27rem; color: rgba(255,255,255,.025); line-height: 1; pointer-events: none; }
+.process::after { content: "EF"; position: absolute; right: -35px; top: -105px; font-family: var(--display); font-size: 27rem; color: rgba(255,255,255,.025); line-height: 1; pointer-events: none; }
 .section-heading.light { position: relative; z-index: 1; }
 .process .section-label { color: var(--gold); }
 .process-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 72px; border-top: 1px solid rgba(255,255,255,.16); }

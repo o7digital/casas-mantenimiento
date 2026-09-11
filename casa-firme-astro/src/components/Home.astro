@@ -149,13 +149,13 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
     <link rel="alternate" hreflang="x-default" href={new URL("/", Astro.site)} />
     <meta name="theme-color" content="#111b1a" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <title>{t("Casa Firme | Mantenimiento residencial")}</title>
+    <title>{t("Espacio Firme | Mantenimiento residencial")}</title>
   </head>
   <body data-messages={JSON.stringify(messages)}>
     <header class="site-header" id="inicio">
-      <a class="brand" href="#inicio" aria-label={t("Casa Firme, inicio")}>
-        <span class="brand-mark" aria-hidden="true">CF</span>
-        <span><strong>CASA FIRME</strong><small>{t("Mantenimiento integral")}</small></span>
+      <a class="brand" href="#inicio" aria-label={t("Espacio Firme, inicio")}>
+        <span class="brand-mark" aria-hidden="true">EF</span>
+        <span><strong>ESPACIO FIRME</strong><small>{t("Mantenimiento integral")}</small></span>
       </a>
       <nav class="desktop-nav" aria-label={t("Navegación principal")}>
         {navigation.map(({ href, label }) => <a href={href}>{label}</a>)}
@@ -194,18 +194,18 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
       <section class="about section-pad" id="quienes-somos" aria-labelledby="about-title">
         <div class="about-intro">
           <div class="about-copy">
-            <p class="section-label">{t("Quiénes somos · Casa Firme")}</p>
+            <p class="section-label">{t("Quiénes somos · Espacio Firme")}</p>
             <h2 id="about-title">{t("Ingeniero Arquitecto")}<br /><em>{t("Project Manager Senior")}</em></h2>
             <p class="about-lead">{t("Ingeniero Arquitecto y Project Manager Senior con más de 20 años de trayectoria liderando de punta a punta proyectos complejos de ingeniería y construcción de gran escala.")}</p>
             <p>{t("Especialista en la coordinación de equipos multidisciplinares (internos y externos), gestión integral de costes, presupuestos y supervisión rigurosa de entregables técnicos.")}</p>
             <p>{t("Experto en la revisión detallada de planos, mitigación de riesgos y control de desvíos en plazos y recursos para asegurar la máxima rentabilidad y calidad en entornos de alto impacto.")}</p>
           </div>
           <aside class="about-note" aria-labelledby="about-criterion">
-            <span class="about-monogram" aria-hidden="true">CF</span>
+            <span class="about-monogram" aria-hidden="true">EF</span>
             <p class="section-label">{t("Nuestro criterio")}</p>
             <h3 id="about-criterion">{t("Reparar lo necesario.")}<br /><em>{t("Conservar lo que funciona.")}</em></h3>
             <p>{t("Dar mantenimiento también es saber cuándo ajustar, cuándo reparar y cuándo sustituir. Cada recomendación debe responder al estado del inmueble y al uso que usted le da.")}</p>
-            <div class="about-note-signature">Casa Firme <span>{t("Mantenimiento integral")}</span></div>
+            <div class="about-note-signature">Espacio Firme <span>{t("Mantenimiento integral")}</span></div>
           </aside>
         </div>
 
@@ -337,7 +337,7 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
       <section class="plan section-pad" id="planes" aria-labelledby="plan-title">
         <div class="plan-visual"><div class="plan-image" role="img" aria-label={t("Detalle arquitectónico de una casa bien cuidada")}></div><div class="plan-badge"><strong>12</strong><span>{t("meses de")}<br />{t("tranquilidad")}</span></div></div>
         <div class="plan-content">
-          <p class="section-label">{t("Plan Casa Firme")}</p><h2 id="plan-title">{t("Prevenir cuesta menos que reparar.")}</h2>
+          <p class="section-label">{t("Plan Espacio Firme")}</p><h2 id="plan-title">{t("Prevenir cuesta menos que reparar.")}</h2>
           <p class="plan-intro">{t("Un programa anual diseñado para anticiparse a los problemas y proteger el valor de su propiedad.")}</p>
           <ul class="plan-list">{planBenefits.map(([number, title, copy]) => <li><span>{number}</span><div><strong>{title}</strong><p>{copy}</p></div></li>)}</ul>
           <a class="button button-dark service-select" href="#cotizar" data-service={t("Plan anual")}>{t("Conocer el plan anual")} <span>→</span></a>
@@ -358,7 +358,7 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
         <div class="quote-intro"><p class="section-label">{t("Contacto")}</p><h2 id="quote-title">{t("Hablemos de su propiedad.")}</h2><p>{t("Déjenos sus datos para preparar una cotización sin compromiso y atenderle de forma ágil.")}</p><p>{t("Incluya su correo para que podamos responderle. Si prefiere que le contactemos por teléfono o WhatsApp, deje también su número e indíquelo en el mensaje.")}</p><div class="availability"><i></i><span>{t("Atención en casas, oficinas y comercios")}</span></div></div>
         <form class="quote-form" id="quote-form" action="https://formspree.io/f/moeqrljv" method="POST" aria-describedby="form-note">
           <input type="hidden" name="language" value={lang} />
-          <input type="hidden" name="_subject" value={t("Nueva solicitud de contacto — Casa Firme")} />
+          <input type="hidden" name="_subject" value={t("Nueva solicitud de contacto — Espacio Firme")} />
           <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden />
           <label>{t("Nombre completo")}<input id="name" name="name" type="text" autocomplete="name" placeholder={t("¿Cómo podemos llamarle?")} required /></label>
           <label>{t("Correo electrónico")}<input id="email" name="email" type="email" autocomplete="email" placeholder={t("usted@ejemplo.com")} required /></label>
@@ -382,13 +382,13 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
       <div class="photo-viewer-footer"><button class="photo-viewer-prev" type="button" aria-label={t("Foto anterior")}>←</button><p class="photo-viewer-caption" aria-live="polite"></p><button class="photo-viewer-next" type="button" aria-label={t("Foto siguiente")}>→</button></div>
     </dialog>
 
-    <footer><a class="brand footer-brand" href="#inicio"><span class="brand-mark">CF</span><span><strong>CASA FIRME</strong><small>{t("Mantenimiento integral")}</small></span></a><p>{t("Su propiedad en buenas manos.")}</p><p class="copyright">© <span id="year"></span> Casa Firme</p></footer>
+    <footer><a class="brand footer-brand" href="#inicio"><span class="brand-mark">EF</span><span><strong>ESPACIO FIRME</strong><small>{t("Mantenimiento integral")}</small></span></a><p>{t("Su propiedad en buenas manos.")}</p><p class="copyright">© <span id="year"></span> Espacio Firme</p></footer>
 
     <script is:inline>
       // Restore only a position explicitly saved by the language switch.
       // Running after the markup avoids an animated trip through the page.
       try {
-        const key = 'casa-firme-language-position';
+        const key = 'espacio-firme-language-position';
         const saved = JSON.parse(sessionStorage.getItem(key) || 'null');
         if (saved && saved.path === location.pathname) {
           sessionStorage.removeItem(key);
@@ -485,7 +485,7 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
           // The current scroll position is authoritative; the URL hash may be stale.
           destination.hash = '';
           try {
-            sessionStorage.setItem('casa-firme-language-position', JSON.stringify({
+            sessionStorage.setItem('espacio-firme-language-position', JSON.stringify({
               path: destination.pathname,
               section: sectionIndex,
               offset,
