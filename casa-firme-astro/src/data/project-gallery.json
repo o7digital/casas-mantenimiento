@@ -36,12 +36,12 @@
     "description": "Áreas de trabajo, salas de reunión y espacios comunes en distintas etapas del proyecto.",
     "photos": [
       {
-        "src": "/proyectos/oficinas-02.webp",
-        "thumbnail": "/proyectos/oficinas-02-720.webp",
-        "width": 1600,
-        "height": 778,
+        "src": "/proyectos/oficinas-03.webp",
+        "thumbnail": "/proyectos/oficinas-03-720.webp",
+        "width": 1416,
+        "height": 688,
         "thumbnailWidth": 720,
-        "alt": "Sala de reuniones con ventanales y plafones circulares"
+        "alt": "Sala de reuniones durante la obra, con plafones e instalaciones en proceso"
       },
       {
         "src": "/proyectos/oficinas-01.webp",
@@ -52,12 +52,12 @@
         "alt": "Área abierta de oficinas con estaciones de trabajo y sillas ergonómicas"
       },
       {
-        "src": "/proyectos/oficinas-03.webp",
-        "thumbnail": "/proyectos/oficinas-03-720.webp",
-        "width": 1416,
-        "height": 688,
+        "src": "/proyectos/oficinas-02.webp",
+        "thumbnail": "/proyectos/oficinas-02-720.webp",
+        "width": 1600,
+        "height": 778,
         "thumbnailWidth": 720,
-        "alt": "Sala de reuniones durante la obra, con plafones e instalaciones en proceso"
+        "alt": "Sala de reuniones con ventanales y plafones circulares"
       },
       {
         "src": "/proyectos/oficinas-04.webp",
