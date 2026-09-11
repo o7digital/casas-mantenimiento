@@ -194,10 +194,10 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
         <div class="about-intro">
           <div class="about-copy">
             <p class="section-label">{t("Quiénes somos · Casa Firme")}</p>
-            <h2 id="about-title">{t("Oficio para resolver.")}<br /><em>{t("Criterio para cuidar.")}</em></h2>
-            <p class="about-lead">{t("Somos Casa Firme. Nos dedicamos al mantenimiento, la reparación y la conservación de casas, oficinas y comercios.")}</p>
-            <p>{t("Sabemos que detrás de cada inmueble hay una vida en marcha: una familia, un negocio, una jornada de trabajo. Por eso, cuidar una propiedad también significa entender cómo se usa, qué necesita y qué conviene conservar.")}</p>
-            <p>{t("Combinamos la atención a fallas concretas con una mirada preventiva. La intención es que cada intervención resuelva una necesidad de hoy y ayude a tomar mejores decisiones sobre el cuidado de mañana.")}</p>
+            <h2 id="about-title">{t("Ingeniero Arquitecto")}<br /><em>{t("Project Manager Senior")}</em></h2>
+            <p class="about-lead">{t("Ingeniero Arquitecto y Project Manager Senior con más de 20 años de trayectoria liderando de punta a punta proyectos complejos de ingeniería y construcción de gran escala.")}</p>
+            <p>{t("Especialista en la coordinación de equipos multidisciplinares (internos y externos), gestión integral de costes, presupuestos y supervisión rigurosa de entregables técnicos.")}</p>
+            <p>{t("Experto en la revisión detallada de planos, mitigación de riesgos y control de desvíos en plazos y recursos para asegurar la máxima rentabilidad y calidad en entornos de alto impacto.")}</p>
           </div>
           <aside class="about-note" aria-labelledby="about-criterion">
             <span class="about-monogram" aria-hidden="true">CF</span>
@@ -268,7 +268,17 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
       </section>
 
       <section class="services section-pad" id="servicios" aria-labelledby="services-title">
-        <div class="section-heading"><div><p class="section-label">{t("Nuestros Servicios")}</p><h2 id="services-title">{t("Expertos para cada detalle")}</h2></div><p>{t("Desde una reparación puntual hasta el cuidado permanente de toda la propiedad.")}</p></div>
+        <div class="section-heading services-heading">
+          <div><p class="section-label">{t("Nuestros Servicios")}</p><h2 id="services-title">{t("Gestión, Mantenimiento y Conservación del Activo Inmobiliario")}</h2></div>
+          <p class="services-tagline"><strong><em>{t("Maximice la vida útil, rentabilidad y seguridad de su infraestructura con rigor de Project Management.")}</em></strong></p>
+        </div>
+        <div class="services-intro">
+          <p>{t("En el sector corporativo, industrial y comercial, un inmueble no es solo un espacio; es un activo crítico que impacta directamente en la continuidad del negocio y la rentabilidad.")}</p>
+          <div>
+            <p>{t("Como")} <strong>{t("Ingeniero Arquitecto y Senior Project Manager con más de 20 años de trayectoria")}</strong> {t("liderando proyectos de gran escala, ofrezco un servicio integral de")} <strong>{t("Mantenimiento y Conservación de Inmuebles")}</strong>.</p>
+            <p>{t("Mi enfoque combina la precisión técnica arquitectónica con una rigurosa gestión de costes y plazos, garantizando que su infraestructura opere siempre al 100% de su capacidad.")}</p>
+          </div>
+        </div>
         <div class="service-grid">
           {services.map((service) => (
             <article class:list={["service-card", { "service-featured": service.featured }]}>
