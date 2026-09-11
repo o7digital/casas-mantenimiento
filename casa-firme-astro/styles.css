@@ -151,6 +151,32 @@ h1 em { color: var(--gold-bright); font-weight: 400; }
 .projects { color: var(--white); background: var(--ink); }
 .projects .section-heading > p { color: rgba(255,255,255,.6); }
 .projects .section-label { color: var(--gold); }
+.project-galleries { display: grid; gap: 72px; margin-bottom: 72px; }
+.project-gallery-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 28px; }
+.project-gallery-heading h3 { margin: 0; font-family: var(--display); font-size: clamp(2rem, 3.4vw, 3.8rem); font-weight: 400; line-height: 1.1; }
+.project-gallery-heading > p { max-width: 420px; margin: 0; color: #c2cbc8; line-height: 1.75; }
+.project-photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; }
+.project-photo { min-width: 0; margin: 0; }
+.project-photo-link { position: relative; display: block; background: #0c1413; }
+.project-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: contain; }
+.project-photo-enlarge { position: absolute; right: 12px; bottom: 12px; display: grid; place-items: center; width: 34px; height: 34px; color: var(--ink); background: var(--gold); transition: background .2s; }
+.project-photo-link:hover .project-photo-enlarge { background: var(--white); }
+.project-photo-link:focus-visible { outline: 3px solid var(--gold); outline-offset: 5px; }
+.project-photo figcaption { display: flex; gap: 12px; padding-top: 14px; color: #c2cbc8; font-size: .82rem; line-height: 1.65; }
+.project-photo figcaption > span { color: var(--gold); font-family: var(--display); }
+.photo-viewer-open { overflow: hidden; }
+.photo-viewer { width: min(1200px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 32px); padding: 16px; border: 1px solid #53615d; background: var(--ink); color: var(--white); }
+.photo-viewer::backdrop { background: rgba(0, 0, 0, .88); }
+.photo-viewer-toolbar, .photo-viewer-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.photo-viewer-toolbar { margin-bottom: 12px; }
+.photo-viewer-count { margin: 0; color: var(--gold); font-variant-numeric: tabular-nums; }
+.photo-viewer button { min-width: 44px; min-height: 44px; padding: 8px 12px; border: 1px solid #53615d; background: transparent; color: var(--white); font: inherit; cursor: pointer; }
+.photo-viewer button:hover { background: #263532; }
+.photo-viewer button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.photo-viewer-close { display: flex; align-items: center; gap: 14px; }
+.photo-viewer-image { display: block; width: 100%; height: min(65dvh, 750px); object-fit: contain; }
+.photo-viewer-footer { margin-top: 12px; }
+.photo-viewer-caption { margin: 0; color: #c2cbc8; font-size: .88rem; line-height: 1.5; text-align: center; }
 .project-types { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,.18); }
 .project-types article { padding: 34px 44px 42px 0; }
 .project-types article + article { padding-left: 44px; border-left: 1px solid rgba(255,255,255,.18); }
@@ -235,6 +261,7 @@ footer .copyright { text-align: right; font-family: var(--sans); font-size: .75r
 }
 
 @media (max-width: 1050px) {
+  .project-photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero { height: 760px; }
   .hero-content { padding-left: 7vw; padding-bottom: 170px; }
   .trust-panel { left: 7vw; right: 7vw; bottom: 34px; width: auto; }
@@ -254,6 +281,13 @@ footer .copyright { text-align: right; font-family: var(--sans); font-size: .75r
 }
 
 @media (max-width: 760px) {
+  .project-gallery-heading { display: block; }
+  .project-gallery-heading > p { margin-top: 18px; }
+  .project-photo-grid { grid-template-columns: 1fr; }
+  .project-galleries { gap: 48px; margin-bottom: 48px; }
+  .photo-viewer { padding: 12px; }
+  .photo-viewer-image { height: 50dvh; }
+  .photo-viewer-caption { font-size: .76rem; }
   .site-header { height: 76px; padding: 0 18px; gap: 10px; }
   .header-actions { gap: 10px; }
   .brand small { display: none; }
