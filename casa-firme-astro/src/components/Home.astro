@@ -268,6 +268,28 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
                   </figure>
                 ))}
               </div>
+              {group.portraitPhotos && (
+                <div class="project-portraits">
+                  <div class="project-portraits-heading">
+                    <h4 id={`portraits-${group.id}`}>{t("Interiores y accesos")}</h4>
+                    <div class="portrait-controls">
+                      <button type="button" data-direction="-1" aria-label={t("Ver fotos anteriores")} aria-controls={`portrait-row-${group.id}`}>←</button>
+                      <button type="button" data-direction="1" aria-label={t("Ver más fotos")} aria-controls={`portrait-row-${group.id}`}>→</button>
+                    </div>
+                  </div>
+                  <div class="project-portrait-row" id={`portrait-row-${group.id}`} role="region" aria-labelledby={`portraits-${group.id}`} tabindex="0">
+                    {group.portraitPhotos.map((photo, index) => (
+                      <figure class="project-photo">
+                        <a class="project-photo-link" href={photo.src} data-caption={t(photo.alt)} aria-label={`${t("Ampliar foto")}: ${t(photo.alt)}`}>
+                          <img src={photo.src} srcset={`${photo.thumbnail} ${photo.thumbnailWidth}w, ${photo.src} ${photo.width}w`} sizes="(max-width: 760px) 80vw, (max-width: 1050px) 33vw, 25vw" alt={t(photo.alt)} width={photo.width} height={photo.height} loading="lazy" decoding="async" />
+                          <span class="project-photo-enlarge" aria-hidden="true">↗</span>
+                        </a>
+                        <figcaption><span>{String(group.photos.length + index + 1).padStart(2, "0")}</span>{t(photo.alt)}</figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                </div>
+              )}
             </section>
           ))}
         </div>
@@ -390,6 +412,22 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
     </script>
 
     <script>
+      document.querySelectorAll<HTMLElement>('.project-portraits').forEach(gallery => {
+        const row = gallery.querySelector<HTMLElement>('.project-portrait-row')!;
+        const previous = gallery.querySelector<HTMLButtonElement>('[data-direction="-1"]')!;
+        const next = gallery.querySelector<HTMLButtonElement>('[data-direction="1"]')!;
+        const updateControls = () => {
+          previous.disabled = row.scrollLeft <= 1;
+          next.disabled = row.scrollLeft + row.clientWidth >= row.scrollWidth - 1;
+        };
+        [previous, next].forEach(button => button.addEventListener('click', () => {
+          row.scrollBy({ left: Number(button.dataset.direction) * row.clientWidth, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+        }));
+        row.addEventListener('scroll', updateControls, { passive: true });
+        new ResizeObserver(updateControls).observe(row);
+        updateControls();
+      });
+
       const photoViewer = document.querySelector<HTMLDialogElement>('.photo-viewer')!;
       const photoLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.project-photo-link'));
       const viewerImage = photoViewer.querySelector<HTMLImageElement>('.photo-viewer-image')!;

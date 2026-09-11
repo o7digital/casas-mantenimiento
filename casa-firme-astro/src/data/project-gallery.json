@@ -28,6 +28,88 @@
         "thumbnailWidth": 720,
         "alt": "Detalle de la fachada terminada con revestimiento en tono ocre"
       }
+    ],
+    "portraitPhotos": [
+      {
+        "src": "/proyectos/consultorios-vivienda-vertical-01.webp",
+        "thumbnail": "/proyectos/consultorios-vivienda-vertical-01-480.webp",
+        "width": 990,
+        "height": 1599,
+        "thumbnailWidth": 480,
+        "alt": "Pasillo interior durante la obra, con muros e instalaciones en proceso"
+      },
+      {
+        "src": "/proyectos/consultorios-vivienda-vertical-02.webp",
+        "thumbnail": "/proyectos/consultorios-vivienda-vertical-02-480.webp",
+        "width": 1200,
+        "height": 1600,
+        "thumbnailWidth": 480,
+        "alt": "Área de lavabo durante la obra con divisiones y acabados en proceso"
+      },
+      {
+        "src": "/proyectos/consultorios-vivienda-vertical-03.webp",
+        "thumbnail": "/proyectos/consultorios-vivienda-vertical-03-480.webp",
+        "width": 1200,
+        "height": 1600,
+        "thumbnailWidth": 480,
+        "alt": "Área de lavabo con espejo, cubierta oscura y divisiones"
+      },
+      {
+        "src": "/proyectos/consultorios-vivienda-vertical-04.webp",
+        "thumbnail": "/proyectos/consultorios-vivienda-vertical-04-480.webp",
+        "width": 1200,
+        "height": 1600,
+        "thumbnailWidth": 480,
+        "alt": "Lavabo sobre mueble oscuro con espejo circular"
+      },
+      {
+        "src": "/proyectos/consultorios-vivienda-vertical-05.webp",
+        "thumbnail": "/proyectos/consultorios-vivienda-vertical-05-480.webp",
+        "width": 1200,
+        "height": 1600,
+        "thumbnailWidth": 480,
+        "alt": "Consultorio con división de vidrio, ventanal y piso de madera"
+      },
+      {
+        "src": "/proyectos/consultorios-vivienda-vertical-06.webp",
+        "thumbnail": "/proyectos/consultorios-vivienda-vertical-06-480.webp",
+        "width": 1200,
+        "height": 1600,
+        "thumbnailWidth": 480,
+        "alt": "Pasillo de consultorios con luminarias circulares y piso oscuro"
+      },
+      {
+        "src": "/proyectos/consultorios-vivienda-vertical-07.webp",
+        "thumbnail": "/proyectos/consultorios-vivienda-vertical-07-480.webp",
+        "width": 1155,
+        "height": 1600,
+        "thumbnailWidth": 480,
+        "alt": "Mostrador de recepción con revestimientos claros y oscuros"
+      },
+      {
+        "src": "/proyectos/consultorios-vivienda-vertical-08.webp",
+        "thumbnail": "/proyectos/consultorios-vivienda-vertical-08-480.webp",
+        "width": 1113,
+        "height": 1600,
+        "thumbnailWidth": 480,
+        "alt": "Recepción con mostrador de madera e iluminación indirecta"
+      },
+      {
+        "src": "/proyectos/consultorios-vivienda-vertical-09.webp",
+        "thumbnail": "/proyectos/consultorios-vivienda-vertical-09-480.webp",
+        "width": 1200,
+        "height": 1600,
+        "thumbnailWidth": 480,
+        "alt": "Acceso exterior con pasillo, rampa y muros blancos"
+      },
+      {
+        "src": "/proyectos/consultorios-vivienda-vertical-10.webp",
+        "thumbnail": "/proyectos/consultorios-vivienda-vertical-10-480.webp",
+        "width": 896,
+        "height": 1195,
+        "thumbnailWidth": 480,
+        "alt": "Acceso exterior con vegetación y celosías"
+      }
     ]
   },
   {
