@@ -413,7 +413,7 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
       <div class="photo-viewer-footer"><button class="photo-viewer-prev" type="button" aria-label={t("Foto anterior")}>←</button><p class="photo-viewer-caption" aria-live="polite"></p><button class="photo-viewer-next" type="button" aria-label={t("Foto siguiente")}>→</button></div>
     </dialog>
 
-    <footer><a class="brand footer-brand" href="#inicio"><span class="brand-mark">EF</span><span><strong>ESPACIO FIRME</strong><small>{t("Mantenimiento integral")}</small></span></a><p>{t("Su propiedad en buenas manos.")}</p><p class="copyright">© <span id="year"></span> Espacio Firme</p></footer>
+    <footer><a class="brand footer-brand" href="#inicio"><span class="brand-mark">EF</span><span><strong>ESPACIO FIRME</strong><small>{t("Mantenimiento integral")}</small></span></a><p>{t("Su propiedad en buenas manos.")}</p><div class="footer-meta"><a href={lang === "en" ? "/en/privacy-policy/" : "/aviso-de-privacidad/"}>{t("Aviso de privacidad")}</a><p class="copyright">© <span id="year"></span> Espacio Firme</p></div></footer>
 
     <script is:inline>
       // Restore only a position explicitly saved by the language switch.

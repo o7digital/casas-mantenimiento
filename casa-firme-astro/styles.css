@@ -321,6 +321,33 @@ footer { min-height: 150px; padding: 38px clamp(24px, 7.7vw, 128px); display: gr
 .footer-brand small, footer p { color: rgba(255,255,255,.5); }
 footer > p { text-align: center; font-family: var(--display); font-size: 1.1rem; }
 footer .copyright { text-align: right; font-family: var(--sans); font-size: .75rem; }
+.footer-meta { display: grid; justify-items: end; gap: 10px; }
+.footer-meta > a { color: rgba(255,255,255,.72); font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.footer-meta > a:hover { color: var(--gold); }
+.footer-meta .copyright { margin: 0; color: rgba(255,255,255,.5); }
+
+.privacy-page { background: var(--white); }
+.privacy-hero { padding: clamp(80px, 10vw, 150px) clamp(24px, 7.7vw, 128px) clamp(64px, 8vw, 110px); color: var(--white); background: var(--deep); }
+.privacy-hero .section-label { color: var(--gold); }
+.privacy-hero h1 { max-width: 900px; margin: 24px 0; font-family: var(--display); font-size: clamp(3.4rem, 7vw, 7.5rem); font-weight: 400; line-height: .95; }
+.privacy-intro { max-width: 720px; color: rgba(255,255,255,.7); font-size: 1.12rem; line-height: 1.8; }
+.privacy-updated { margin: 38px 0 0; color: var(--gold); font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.privacy-layout { padding: clamp(68px, 9vw, 130px) clamp(24px, 7.7vw, 128px); display: grid; grid-template-columns: minmax(210px, .65fr) minmax(0, 1.7fr); gap: clamp(50px, 9vw, 140px); align-items: start; }
+.privacy-layout aside { position: sticky; top: 28px; }
+.privacy-layout aside nav { display: grid; border-top: 1px solid var(--line); }
+.privacy-layout aside a { padding: 13px 0; display: grid; grid-template-columns: 34px 1fr; gap: 10px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .75rem; line-height: 1.35; }
+.privacy-layout aside a span { color: #946c2d; font-family: var(--display); }
+.privacy-layout aside a:hover { color: var(--ink); }
+.privacy-content { max-width: 800px; }
+.privacy-content section { scroll-margin-top: 28px; padding: 0 0 48px; }
+.privacy-content section + section { padding-top: 48px; border-top: 1px solid var(--line); }
+.privacy-content h2 { margin: 0 0 22px; font-family: var(--display); font-size: clamp(1.8rem, 3vw, 2.7rem); font-weight: 400; line-height: 1.15; }
+.privacy-content p { margin: 0; color: var(--muted); line-height: 1.85; }
+.privacy-content p + p { margin-top: 16px; }
+.privacy-contact { margin: 0 clamp(24px, 7.7vw, 128px) clamp(68px, 9vw, 130px); padding: clamp(34px, 5vw, 62px); display: flex; align-items: end; justify-content: space-between; gap: 48px; background: var(--paper); }
+.privacy-contact h2 { max-width: 620px; margin: 16px 0; font-family: var(--display); font-size: clamp(2rem, 4vw, 3.8rem); font-weight: 400; line-height: 1.08; }
+.privacy-contact div > p:last-child { max-width: 620px; margin-bottom: 0; color: var(--muted); line-height: 1.75; }
+.privacy-contact .button { flex-shrink: 0; }
 
 @keyframes hero-in { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: scale(1.015); } }
 @keyframes content-in { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
@@ -435,6 +462,16 @@ footer .copyright { text-align: right; font-family: var(--sans); font-size: .75r
   footer { grid-template-columns: 1fr; gap: 26px; text-align: center; padding: 50px 22px; }
   .footer-brand { justify-content: center; }
   footer .copyright { text-align: center; }
+  .footer-meta { justify-items: center; }
+  .privacy-hero { padding-left: 22px; padding-right: 22px; }
+  .privacy-layout { padding: 64px 22px; grid-template-columns: 1fr; gap: 48px; }
+  .privacy-layout aside { position: static; }
+  .privacy-layout aside nav { grid-template-columns: 1fr 1fr; }
+  .privacy-layout aside a:nth-child(even) { padding-left: 14px; border-left: 1px solid var(--line); }
+  .privacy-content section { padding-bottom: 36px; }
+  .privacy-content section + section { padding-top: 36px; }
+  .privacy-contact { margin: 0 22px 68px; padding: 30px 24px; align-items: flex-start; flex-direction: column; }
+  .privacy-contact .button { width: 100%; }
 }
 
 @media (max-width: 400px) {

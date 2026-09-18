@@ -51,7 +51,7 @@ const ids = ["estado-inicial", "avance-etapas", "detalle-acabados", "entrega-lim
       {copy.stages.map((stage, i) => <section class="process-stage" id={ids[i]}><div class="process-stage-index">0{i + 1}</div><div class="process-stage-content"><p class="section-label">{copy.nav[i]}</p><h2>{stage[0]}</h2><p class="process-stage-lead">{stage[1]}</p><div class="process-stage-grid">{[0, 2, 4].map(j => <article><h3>{stage[2][j]}</h3><p>{stage[2][j + 1]}</p></article>)}</div></div></section>)}
       <section class="process-cta"><p>{copy.cta}</p><a class="button button-dark" href={`${home}#cotizar`}>{copy.button} <span>→</span></a></section>
     </main>
-    <footer><a class="brand footer-brand" href={home}><span class="brand-mark">EF</span><span><strong>ESPACIO FIRME</strong><small>{copy.maintenance}</small></span></a><p>{copy.tagline}</p><p class="copyright">© <span id="year"></span> Espacio Firme</p></footer>
+    <footer><a class="brand footer-brand" href={home}><span class="brand-mark">EF</span><span><strong>ESPACIO FIRME</strong><small>{copy.maintenance}</small></span></a><p>{copy.tagline}</p><div class="footer-meta"><a href={isEnglish ? "/en/privacy-policy/" : "/aviso-de-privacidad/"}>{isEnglish ? "Privacy notice" : "Aviso de privacidad"}</a><p class="copyright">© <span id="year"></span> Espacio Firme</p></div></footer>
     <script define:vars={{ openLabel: copy.menu, closeLabel: copy.close }}>
       const toggle = document.querySelector('.menu-toggle'); const menu = document.querySelector('#mobile-menu');
       const closeMenu = () => { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', openLabel); document.body.classList.remove('menu-open'); };

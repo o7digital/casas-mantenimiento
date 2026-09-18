@@ -1,0 +1,120 @@
+---
+import "../styles/global.css";
+
+interface Props { lang: "es" | "en" }
+type PrivacySection = [title: string, paragraphs: string[]];
+const { lang } = Astro.props;
+const isEnglish = lang === "en";
+const home = isEnglish ? "/en/" : "/";
+const current = isEnglish ? "/en/privacy-policy/" : "/aviso-de-privacidad/";
+const alternate = isEnglish ? "/aviso-de-privacidad/" : "/en/privacy-policy/";
+const copy = isEnglish ? {
+  title: "Privacy notice",
+  description: "How Espacio Firme collects, uses and protects personal data submitted through this website.",
+  eyebrow: "Espacio Firme · Privacy",
+  intro: "This notice explains how Espacio Firme processes the personal data of people who visit this website or submit a service inquiry.",
+  updated: "Last updated: September 18, 2026",
+  maintenance: "Comprehensive maintenance",
+  navLabel: "Main navigation",
+  menu: "Open menu",
+  close: "Close menu",
+  visit: "Request a visit",
+  back: "Back to home",
+  about: "About us",
+  services: "Services",
+  projects: "Projects",
+  tagline: "Your property in good hands.",
+  privacy: "Privacy notice",
+  contactTitle: "Do you have a request concerning your data?",
+  contactText: "Use our contact form and write “Privacy” in your message so we can identify and respond to your request.",
+  contactButton: "Contact Espacio Firme",
+  sections: [
+    ["1. Data controller", ["Espacio Firme is responsible for processing personal data submitted through this website. This notice applies to the website, its contact form and communications arising from a service inquiry."]],
+    ["2. Data we collect", ["When you use the contact form, we may receive your full name, email address, optional telephone or WhatsApp number, property type, requested service and the content of your message.", "Our hosting and form providers may also process basic technical data such as IP address, browser, device, date and security logs. Espacio Firme does not intentionally request sensitive personal data through this website."]],
+    ["3. Purposes", ["We use your data to respond to inquiries, understand the condition and needs of a property, prepare estimates or proposals, arrange visits, provide requested services, follow up on a business relationship, protect the website and comply with applicable legal obligations.", "We do not sell personal data or use it for cross-context behavioural advertising."]],
+    ["4. Service providers and transfers", ["The contact form is processed by Formspree and the website is hosted by Vercel. These providers may process information in the United States or other countries under their own privacy and security terms.", "We may also disclose information when required by law or when necessary to protect our rights. We do not transfer personal data to unrelated third parties for their own marketing purposes."]],
+    ["5. Retention and security", ["We retain inquiries only for as long as necessary to respond, manage the requested or contracted relationship, comply with legal obligations and establish or defend rights.", "We apply reasonable administrative, technical and organisational measures appropriate to the nature of the information. However, no internet transmission or storage system can guarantee absolute security."]],
+    ["6. Your rights", ["You may request access to, correction or deletion of your personal data, object to its processing, revoke consent or limit its use or disclosure, in accordance with applicable Mexican law.", "Submit your request through the contact form with “Privacy” in the message. Include your name, the right you wish to exercise, a clear description of your request and information that allows us to locate the relevant data. We may ask for reasonable information to verify your identity before responding."]],
+    ["7. Cookies and local storage", ["Espacio Firme does not currently use advertising or analytics cookies. The website may use temporary session storage solely to preserve your position when changing languages. This information remains in your browser session and is not used to build advertising profiles.", "Third-party services linked from or used by the site operate under their own privacy notices and may use necessary technologies according to their policies."]],
+    ["8. Minors and third-party links", ["This website is intended for people seeking property maintenance services and is not directed at minors. We do not knowingly collect personal data from minors.", "Links to external services, including Instagram, Formspree and other third-party sites, are governed by their respective privacy notices."]],
+    ["9. Changes to this notice", ["We may update this notice to reflect changes to the website, our services or applicable requirements. The date shown at the top identifies the current version."]],
+  ],
+} : {
+  title: "Aviso de privacidad",
+  description: "Cómo Espacio Firme recopila, utiliza y protege los datos personales enviados mediante este sitio web.",
+  eyebrow: "Espacio Firme · Privacidad",
+  intro: "Este aviso explica cómo Espacio Firme trata los datos personales de quienes visitan este sitio web o envían una solicitud de servicio.",
+  updated: "Última actualización: 18 de septiembre de 2026",
+  maintenance: "Mantenimiento integral",
+  navLabel: "Navegación principal",
+  menu: "Abrir menú",
+  close: "Cerrar menú",
+  visit: "Solicitar visita",
+  back: "Volver al inicio",
+  about: "Quiénes somos",
+  services: "Servicios",
+  projects: "Proyectos",
+  tagline: "Su propiedad en buenas manos.",
+  privacy: "Aviso de privacidad",
+  contactTitle: "¿Tiene una solicitud sobre sus datos?",
+  contactText: "Utilice nuestro formulario de contacto y escriba “Privacidad” en el mensaje para que podamos identificar y atender su solicitud.",
+  contactButton: "Contactar a Espacio Firme",
+  sections: [
+    ["1. Responsable del tratamiento", ["Espacio Firme es responsable del tratamiento de los datos personales enviados mediante este sitio web. Este aviso aplica al sitio, su formulario de contacto y las comunicaciones derivadas de una solicitud de servicio."]],
+    ["2. Datos que recopilamos", ["Al utilizar el formulario podemos recibir su nombre completo, correo electrónico, teléfono o WhatsApp opcional, tipo de propiedad, servicio solicitado y el contenido de su mensaje.", "Nuestros proveedores de alojamiento y formularios también pueden tratar datos técnicos básicos, como dirección IP, navegador, dispositivo, fecha y registros de seguridad. Espacio Firme no solicita intencionalmente datos personales sensibles mediante este sitio."]],
+    ["3. Finalidades", ["Utilizamos sus datos para responder consultas, conocer el estado y las necesidades de un inmueble, preparar cotizaciones o propuestas, coordinar visitas, prestar los servicios solicitados, dar seguimiento a una relación comercial, proteger el sitio y cumplir obligaciones legales aplicables.", "No vendemos datos personales ni los utilizamos para publicidad conductual entre distintos contextos."]],
+    ["4. Proveedores y transferencias", ["El formulario de contacto es procesado por Formspree y el sitio está alojado en Vercel. Estos proveedores pueden tratar información en Estados Unidos u otros países conforme a sus propias condiciones de privacidad y seguridad.", "También podremos comunicar información cuando una autoridad lo requiera legalmente o cuando sea necesario para proteger nuestros derechos. No transferimos datos a terceros ajenos para sus propios fines publicitarios."]],
+    ["5. Conservación y seguridad", ["Conservamos las solicitudes solo durante el tiempo necesario para responderlas, administrar la relación solicitada o contratada, cumplir obligaciones legales y ejercer o defender derechos.", "Aplicamos medidas administrativas, técnicas y organizativas razonables según la naturaleza de la información. Sin embargo, ningún sistema de transmisión o almacenamiento por internet puede garantizar seguridad absoluta."]],
+    ["6. Derechos ARCO", ["Usted puede solicitar acceso, rectificación, cancelación u oposición respecto de sus datos personales, revocar su consentimiento o limitar su uso o divulgación, conforme a la legislación mexicana aplicable.", "Envíe su solicitud mediante el formulario de contacto e indique “Privacidad” en el mensaje. Incluya su nombre, el derecho que desea ejercer, una descripción clara de la solicitud y datos que permitan localizar la información. Podremos solicitar información razonable para verificar su identidad antes de responder."]],
+    ["7. Cookies y almacenamiento local", ["Espacio Firme no utiliza actualmente cookies publicitarias ni de analítica. El sitio puede usar almacenamiento temporal de sesión únicamente para conservar su posición al cambiar de idioma. Esta información permanece en la sesión de su navegador y no se utiliza para crear perfiles publicitarios.", "Los servicios de terceros enlazados o utilizados por el sitio operan conforme a sus propios avisos y pueden emplear tecnologías necesarias según sus políticas."]],
+    ["8. Menores y enlaces externos", ["Este sitio está dirigido a personas interesadas en servicios de mantenimiento inmobiliario y no está destinado a menores de edad. No recopilamos conscientemente datos personales de menores.", "Los enlaces a servicios externos, incluidos Instagram, Formspree y otros sitios de terceros, se rigen por sus respectivos avisos de privacidad."]],
+    ["9. Cambios al aviso", ["Podremos actualizar este aviso para reflejar cambios en el sitio, nuestros servicios o los requisitos aplicables. La fecha indicada al inicio identifica la versión vigente."]],
+  ],
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={copy.description} />
+    <link rel="canonical" href={new URL(current, Astro.site)} />
+    <link rel="alternate" hreflang="es" href={new URL("/aviso-de-privacidad/", Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL("/en/privacy-policy/", Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL("/aviso-de-privacidad/", Astro.site)} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#111b1a" />
+    <title>{copy.title} | Espacio Firme</title>
+  </head>
+  <body>
+    <header class="site-header" id="inicio">
+      <a class="brand" href={home} aria-label="Espacio Firme"><span class="brand-mark" aria-hidden="true">EF</span><span><strong>ESPACIO FIRME</strong><small>{copy.maintenance}</small></span></a>
+      <nav class="desktop-nav" aria-label={copy.navLabel}><a href={`${home}#quienes-somos`}>{copy.about}</a><a href={`${home}#servicios`}>{copy.services}</a><a href={`${home}#proyectos`}>{copy.projects}</a><a href={home}>{copy.back}</a></nav>
+      <div class="header-actions"><nav class="language-switch" aria-label="Idioma"><a href="/aviso-de-privacidad/" aria-current={!isEnglish ? "page" : undefined}>ES</a><a href="/en/privacy-policy/" aria-current={isEnglish ? "page" : undefined}>EN</a></nav><a class="header-cta" href={`${home}#cotizar`}>{copy.visit} <span>↗</span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label={copy.menu}><span></span><span></span><span></span></button></div>
+      <nav class="mobile-menu" id="mobile-menu" aria-label={copy.navLabel} hidden><a href={`${home}#quienes-somos`}><span>01</span>{copy.about}</a><a href={`${home}#servicios`}><span>02</span>{copy.services}</a><a href={`${home}#proyectos`}><span>03</span>{copy.projects}</a><a href={home}><span>04</span>{copy.back}</a><a class="button button-primary" href={`${home}#cotizar`}>{copy.visit} <span>→</span></a></nav>
+    </header>
+    <main class="privacy-page">
+      <header class="privacy-hero">
+        <p class="section-label">{copy.eyebrow}</p>
+        <h1>{copy.title}</h1>
+        <p class="privacy-intro">{copy.intro}</p>
+        <p class="privacy-updated">{copy.updated}</p>
+      </header>
+      <div class="privacy-layout">
+        <aside><nav aria-label={copy.title}>{(copy.sections as PrivacySection[]).map(([title], index) => <a href={`#privacy-${index + 1}`}><span>0{index + 1}</span>{title.replace(/^\d+\. /, "")}</a>)}</nav></aside>
+        <div class="privacy-content">
+          {(copy.sections as PrivacySection[]).map(([title, paragraphs], index) => <section id={`privacy-${index + 1}`}><h2>{title}</h2>{paragraphs.map((paragraph) => <p>{paragraph}</p>)}</section>)}
+        </div>
+      </div>
+      <section class="privacy-contact"><div><p class="section-label">Espacio Firme</p><h2>{copy.contactTitle}</h2><p>{copy.contactText}</p></div><a class="button button-dark" href={`${home}#cotizar`}>{copy.contactButton} <span>→</span></a></section>
+    </main>
+    <footer><a class="brand footer-brand" href={home}><span class="brand-mark">EF</span><span><strong>ESPACIO FIRME</strong><small>{copy.maintenance}</small></span></a><p>{copy.tagline}</p><div class="footer-meta"><a href={current} aria-current="page">{copy.privacy}</a><p class="copyright">© <span id="year"></span> Espacio Firme</p></div></footer>
+    <script define:vars={{ openLabel: copy.menu, closeLabel: copy.close }}>
+      const toggle = document.querySelector('.menu-toggle'); const menu = document.querySelector('#mobile-menu');
+      const closeMenu = () => { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', openLabel); document.body.classList.remove('menu-open'); };
+      toggle.addEventListener('click', () => { const open = menu.hidden; menu.hidden = !open; toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? closeLabel : openLabel); document.body.classList.toggle('menu-open', open); });
+      menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu)); document.querySelector('#year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
