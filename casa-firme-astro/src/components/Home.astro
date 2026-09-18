@@ -189,6 +189,22 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
             <p class="about-lead">{t("En Espacio Firme somos una empresa de mantenimiento e ingeniería inmobiliaria dedicada a la preservación y optimización de activos.")}</p>
             <p>{t("Guiados por la honestidad, el compromiso absoluto y una rigurosa atención al detalle, diseñamos soluciones a la medida para los sectores residencial, corporativo y comercial.")}</p>
             <p>{t("Nuestro propósito es garantizar que cada espacio opere a su máxima capacidad y bajo los más altos estándares de seguridad, asegurando la rentabilidad de su inversión a largo plazo.")}</p>
+            <div class="about-system" aria-label={t("Nuestro ciclo de gestión inmobiliaria")}>
+              <div class="about-system-heading">
+                <p class="section-label">{t("Ciclo de valor del inmueble")}</p>
+                <p>{t("Un solo equipo, de la prevención a la transformación.")}</p>
+              </div>
+              <ol class="about-system-flow">
+                {[t("Diagnosticamos"), t("Planificamos"), t("Ejecutamos"), t("Verificamos")].map((step, index) => (
+                  <li><span>0{index + 1}</span><strong>{step}</strong></li>
+                ))}
+              </ol>
+              <div class="about-system-outcomes">
+                <div><span aria-hidden="true">＋</span><p>{t("Seguridad")}</p></div>
+                <div><span aria-hidden="true">↻</span><p>{t("Continuidad")}</p></div>
+                <div><span aria-hidden="true">↗</span><p>{t("Valor a largo plazo")}</p></div>
+              </div>
+            </div>
           </div>
           <aside class="about-note" aria-label={t("Misión y visión de Espacio Firme")}>
             <span class="about-monogram" aria-hidden="true">EF</span>
