@@ -89,16 +89,6 @@ const portfolioStories = [
     width: 1600,
     height: 901,
   },
-  {
-    number: "03",
-    eyebrow: t("Seguridad y orden"),
-    title: t("Protegemos a las personas y al inmueble."),
-    text: t("Personal uniformado, equipo de protección, superficies cubiertas, herramientas organizadas y limpieza durante toda la obra."),
-    image: "/equipo-seguridad-orden.webp",
-    alt: t("Técnicos uniformados con equipo de protección trabajando en una obra residencial limpia y ordenada"),
-    width: 1600,
-    height: 1067,
-  },
 ];
 
 const projectCases = [
@@ -251,7 +241,12 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
         </div>
         <div class="portfolio-proof" aria-label={t("Qué documentamos en cada proyecto")}>
           <p>{t("Una obra bien hecha también debe poder comprobarse.")}</p>
-          <ul><li>{t("Estado inicial")}</li><li>{t("Avance por etapas")}</li><li>{t("Detalle de acabados")}</li><li>{t("Entrega limpia")}</li></ul>
+          <ul>
+            <li><a href={lang === "en" ? "/en/process/#estado-inicial" : "/proceso/#estado-inicial"}>{t("Estado inicial")} <span aria-hidden="true">↗</span></a></li>
+            <li><a href={lang === "en" ? "/en/process/#avance-etapas" : "/proceso/#avance-etapas"}>{t("Avance por etapas")} <span aria-hidden="true">↗</span></a></li>
+            <li><a href={lang === "en" ? "/en/process/#detalle-acabados" : "/proceso/#detalle-acabados"}>{t("Detalle de acabados")} <span aria-hidden="true">↗</span></a></li>
+            <li><a href={lang === "en" ? "/en/process/#entrega-limpia" : "/proceso/#entrega-limpia"}>{t("Entrega limpia")} <span aria-hidden="true">↗</span></a></li>
+          </ul>
         </div>
       </section>
 

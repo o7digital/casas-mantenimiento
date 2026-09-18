@@ -1,0 +1,62 @@
+---
+import "../styles/global.css";
+
+interface Props { lang: "es" | "en" }
+const { lang } = Astro.props;
+const isEnglish = lang === "en";
+const home = isEnglish ? "/en/" : "/";
+const current = isEnglish ? "/en/process/" : "/proceso/";
+const copy = isEnglish ? {
+  title: "A documented process.", accent: "Confidence at every stage.",
+  intro: "We make the progress of every project visible—from the first assessment to the final handover—with clear evidence and decisions.",
+  nav: ["Initial condition", "Progress by stage", "Finish details", "Clean handover"],
+  stages: [
+    ["Initial condition", "We begin with a technical assessment that records what is happening, where the issue originates and what truly needs attention.", ["Visual inspection", "We review surfaces, installations and critical points without overlooking the context.", "Photo record", "We document the condition before work begins to establish a clear baseline.", "Defined scope", "We explain priorities, alternatives, materials, timing and costs before proceeding."]],
+    ["Progress by stage", "The work is organized into measurable phases. You know what has been completed, what follows and whether a decision is required.", ["Work plan", "Activities are sequenced to coordinate trades, access, drying times and deliveries.", "Progress reports", "We share concise updates with photographs, achievements and the next scheduled actions.", "Change control", "Any unexpected condition is explained and approved before it affects scope or budget."]],
+    ["Finish details", "Before closing a project, we inspect the details that determine durability, function and the quality you see every day.", ["Technical review", "We verify alignment, sealing, connections, operation and compatibility between materials.", "Finish review", "We inspect joints, cuts, paint, carpentry and visible details with a meticulous eye.", "Punch list", "Any pending correction is recorded, assigned and resolved before final acceptance."]],
+    ["Clean handover", "We return a functional, orderly space, supported by a clear record of the work completed and the agreed warranty.", ["Final cleaning", "We remove protection, tools and waste so the property is ready to use.", "Handover file", "We compile photographic evidence, materials used and relevant maintenance recommendations.", "Warranty and follow-up", "We formalize the applicable warranty and remain available for post-project follow-up."]],
+  ],
+  cta: "Let us create a clear, documented maintenance plan for your property.", button: "Discuss your project", process: "Our process", back: "Back to home", visit: "Request a visit", tagline: "Property care, made visible.", maintenance: "Comprehensive maintenance", navLabel: "Main navigation", menu: "Open menu", close: "Close menu",
+} : {
+  title: "Un proceso documentado.", accent: "Confianza en cada etapa.",
+  intro: "Hacemos visible el avance de cada proyecto, desde el diagnóstico inicial hasta la entrega final, con evidencia clara y decisiones bien fundamentadas.",
+  nav: ["Estado inicial", "Avance por etapas", "Detalle de acabados", "Entrega limpia"],
+  stages: [
+    ["Estado inicial", "Comenzamos con un diagnóstico técnico que registra qué sucede, dónde se origina el problema y qué requiere atención real.", ["Inspección visual", "Revisamos superficies, instalaciones y puntos críticos sin perder de vista el contexto del inmueble.", "Registro fotográfico", "Documentamos las condiciones antes de intervenir para establecer un punto de partida claro.", "Alcance definido", "Explicamos prioridades, alternativas, materiales, tiempos y costos antes de avanzar."]],
+    ["Avance por etapas", "Organizamos la ejecución en fases medibles. Usted sabe qué se terminó, qué sigue y cuándo se requiere una decisión.", ["Plan de trabajo", "Secuenciamos actividades para coordinar especialidades, accesos, tiempos de secado y entregas.", "Reportes de avance", "Compartimos actualizaciones breves con fotografías, logros y las siguientes acciones programadas.", "Control de cambios", "Cualquier imprevisto se explica y autoriza antes de modificar el alcance o el presupuesto."]],
+    ["Detalle de acabados", "Antes de cerrar el proyecto revisamos los detalles que determinan la durabilidad, el funcionamiento y la calidad visible.", ["Revisión técnica", "Verificamos niveles, sellos, conexiones, funcionamiento y compatibilidad entre materiales.", "Control de acabados", "Inspeccionamos juntas, cortes, pintura, carpintería y encuentros visibles con atención minuciosa.", "Lista de pendientes", "Toda corrección queda registrada, asignada y resuelta antes de la aceptación final."]],
+    ["Entrega limpia", "Devolvemos un espacio funcional y ordenado, acompañado por un registro claro de lo ejecutado y la garantía acordada.", ["Limpieza final", "Retiramos protecciones, herramientas y residuos para entregar el inmueble listo para usarse.", "Expediente de entrega", "Reunimos evidencia fotográfica, materiales utilizados y recomendaciones de mantenimiento.", "Garantía y seguimiento", "Formalizamos el respaldo aplicable y permanecemos disponibles para el seguimiento posterior."]],
+  ],
+  cta: "Diseñemos un plan de mantenimiento claro y documentado para su inmueble.", button: "Hablemos de su proyecto", process: "Nuestro proceso", back: "Volver al inicio", visit: "Solicitar visita", tagline: "El cuidado de su propiedad, a la vista.", maintenance: "Mantenimiento integral", navLabel: "Navegación principal", menu: "Abrir menú", close: "Cerrar menú",
+};
+const ids = ["estado-inicial", "avance-etapas", "detalle-acabados", "entrega-limpia"];
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={copy.intro} /><link rel="canonical" href={new URL(current, Astro.site)} /><link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{copy.process} | Espacio Firme</title>
+  </head>
+  <body>
+    <header class="site-header" id="inicio">
+      <a class="brand" href={home} aria-label="Espacio Firme"><span class="brand-mark" aria-hidden="true">EF</span><span><strong>ESPACIO FIRME</strong><small>{copy.maintenance}</small></span></a>
+      <nav class="desktop-nav" aria-label={copy.navLabel}><a href={`${home}#quienes-somos`}>{isEnglish ? "About us" : "Quiénes somos"}</a><a href={`${home}#servicios`}>{isEnglish ? "Services" : "Servicios"}</a><a href={`${home}#proyectos`}>{isEnglish ? "Projects" : "Proyectos"}</a><a href={home}>{copy.back}</a></nav>
+      <div class="header-actions"><nav class="language-switch" aria-label="Idioma"><a href="/proceso/" aria-current={!isEnglish ? "page" : undefined}>ES</a><a href="/en/process/" aria-current={isEnglish ? "page" : undefined}>EN</a></nav><a class="header-cta" href={`${home}#cotizar`}>{copy.visit} <span>↗</span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label={copy.menu}><span></span><span></span><span></span></button></div>
+      <nav class="mobile-menu" id="mobile-menu" aria-label={copy.navLabel} hidden><a href={`${home}#quienes-somos`}><span>01</span>{isEnglish ? "About us" : "Quiénes somos"}</a><a href={`${home}#servicios`}><span>02</span>{isEnglish ? "Services" : "Servicios"}</a><a href={`${home}#proyectos`}><span>03</span>{isEnglish ? "Projects" : "Proyectos"}</a><a href={home}><span>04</span>{copy.back}</a><a class="button button-primary" href={`${home}#cotizar`}>{copy.visit} <span>→</span></a></nav>
+    </header>
+    <main class="process-page">
+      <section class="process-hero"><div class="process-hero-inner"><p class="section-label">Espacio Firme · {copy.process}</p><h1>{copy.title}<em>{copy.accent}</em></h1><p class="process-hero-copy">{copy.intro}</p></div></section>
+      <nav class="process-nav" aria-label={copy.process}>{copy.nav.map((label, i) => <a href={`#${ids[i]}`}><span>0{i + 1}</span>{label}</a>)}</nav>
+      {copy.stages.map((stage, i) => <section class="process-stage" id={ids[i]}><div class="process-stage-index">0{i + 1}</div><div class="process-stage-content"><p class="section-label">{copy.nav[i]}</p><h2>{stage[0]}</h2><p class="process-stage-lead">{stage[1]}</p><div class="process-stage-grid">{[0, 2, 4].map(j => <article><h3>{stage[2][j]}</h3><p>{stage[2][j + 1]}</p></article>)}</div></div></section>)}
+      <section class="process-cta"><p>{copy.cta}</p><a class="button button-dark" href={`${home}#cotizar`}>{copy.button} <span>→</span></a></section>
+    </main>
+    <footer><a class="brand footer-brand" href={home}><span class="brand-mark">EF</span><span><strong>ESPACIO FIRME</strong><small>{copy.maintenance}</small></span></a><p>{copy.tagline}</p><p class="copyright">© <span id="year"></span> Espacio Firme</p></footer>
+    <script define:vars={{ openLabel: copy.menu, closeLabel: copy.close }}>
+      const toggle = document.querySelector('.menu-toggle'); const menu = document.querySelector('#mobile-menu');
+      const closeMenu = () => { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', openLabel); document.body.classList.remove('menu-open'); };
+      toggle.addEventListener('click', () => { const open = menu.hidden; menu.hidden = !open; toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? closeLabel : openLabel); document.body.classList.toggle('menu-open', open); });
+      menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu)); document.querySelector('#year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
