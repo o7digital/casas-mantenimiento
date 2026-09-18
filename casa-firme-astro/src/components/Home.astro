@@ -195,16 +195,23 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
         <div class="about-intro">
           <div class="about-copy">
             <p class="section-label">{t("Quiénes somos · Espacio Firme")}</p>
-            <h2 id="about-title">{t("Ingeniero Arquitecto")}<br /><em>{t("Project Manager Senior")}</em></h2>
-            <p class="about-lead">{t("Ingeniero Arquitecto y Project Manager Senior con más de 20 años de trayectoria liderando de punta a punta proyectos complejos de ingeniería y construcción de gran escala.")}</p>
-            <p>{t("Especialista en la coordinación de equipos multidisciplinares (internos y externos), gestión integral de costes, presupuestos y supervisión rigurosa de entregables técnicos.")}</p>
-            <p>{t("Experto en la revisión detallada de planos, mitigación de riesgos y control de desvíos en plazos y recursos para asegurar la máxima rentabilidad y calidad en entornos de alto impacto.")}</p>
+            <h2 id="about-title">{t("Cuidamos su inmueble.")}<br /><em>{t("Protegemos su inversión.")}</em></h2>
+            <p class="about-lead">{t("En Espacio Firme somos una empresa de mantenimiento e ingeniería inmobiliaria dedicada a la preservación y optimización de activos.")}</p>
+            <p>{t("Guiados por la honestidad, el compromiso absoluto y una rigurosa atención al detalle, diseñamos soluciones a la medida para los sectores residencial, corporativo y comercial.")}</p>
+            <p>{t("Nuestro propósito es garantizar que cada espacio opere a su máxima capacidad y bajo los más altos estándares de seguridad, asegurando la rentabilidad de su inversión a largo plazo.")}</p>
           </div>
-          <aside class="about-note" aria-labelledby="about-criterion">
+          <aside class="about-note" aria-label={t("Misión y visión de Espacio Firme")}>
             <span class="about-monogram" aria-hidden="true">EF</span>
-            <p class="section-label">{t("Nuestro criterio")}</p>
-            <h3 id="about-criterion">{t("Reparar lo necesario.")}<br /><em>{t("Conservar lo que funciona.")}</em></h3>
-            <p>{t("Dar mantenimiento también es saber cuándo ajustar, cuándo reparar y cuándo sustituir. Cada recomendación debe responder al estado del inmueble y al uso que usted le da.")}</p>
+            <div class="about-statement">
+              <p class="section-label">{t("Misión")}</p>
+              <h3>{t("Garantizar la máxima vida útil, seguridad y rentabilidad de cada activo inmobiliario.")}</h3>
+              <p>{t("Lo logramos mediante una gestión integral basada en el rigor del Project Management, la honestidad, el compromiso absoluto y una minuciosa atención al detalle.")}</p>
+            </div>
+            <div class="about-statement about-vision">
+              <p class="section-label">{t("Visión")}</p>
+              <h3>{t("Ser la empresa referente en mantenimiento e ingeniería inmobiliaria.")}</h3>
+              <p>{t("Aspiramos a ser un aliado de confianza, reconocido por nuestra atención al detalle, transparencia operativa y capacidad de adaptación a cada necesidad.")}</p>
+            </div>
             <div class="about-note-signature">Espacio Firme <span>{t("Mantenimiento integral")}</span></div>
           </aside>
         </div>
@@ -319,8 +326,8 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
         <div class="services-intro">
           <p>{t("En el sector corporativo, industrial y comercial, un inmueble no es solo un espacio; es un activo crítico que impacta directamente en la continuidad del negocio y la rentabilidad.")}</p>
           <div>
-            <p>{t("Como")} <strong>{t("Ingeniero Arquitecto y Senior Project Manager con más de 20 años de trayectoria")}</strong> {t("liderando proyectos de gran escala, ofrezco un servicio integral de")} <strong>{t("Mantenimiento y Conservación de Inmuebles")}</strong>.</p>
-            <p>{t("Mi enfoque combina la precisión técnica arquitectónica con una rigurosa gestión de costes y plazos, garantizando que su infraestructura opere siempre al 100% de su capacidad.")}</p>
+            <p>{t("Nuestro equipo integra experiencia en ingeniería, arquitectura y Project Management para ofrecer un servicio integral de")} <strong>{t("Mantenimiento y Conservación de Inmuebles")}</strong>.</p>
+            <p>{t("Nuestro enfoque combina precisión técnica con una rigurosa gestión de costes y plazos, garantizando que su infraestructura opere siempre al máximo de su capacidad.")}</p>
           </div>
         </div>
         <div class="service-grid">
