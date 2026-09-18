@@ -109,6 +109,22 @@
         "height": 1195,
         "thumbnailWidth": 480,
         "alt": "Acceso exterior con vegetación y celosías"
+      },
+      {
+        "src": "/proyectos/consultorios-vivienda-vertical-11.webp",
+        "thumbnail": "/proyectos/consultorios-vivienda-vertical-11-480.webp",
+        "width": 1200,
+        "height": 1600,
+        "thumbnailWidth": 480,
+        "alt": "Espacio residencial durante la obra, con estructura, instalaciones y muros en proceso"
+      },
+      {
+        "src": "/proyectos/consultorios-vivienda-vertical-12.webp",
+        "thumbnail": "/proyectos/consultorios-vivienda-vertical-12-480.webp",
+        "width": 880,
+        "height": 1184,
+        "thumbnailWidth": 480,
+        "alt": "Sala y comedor residencial terminados con iluminación colgante y acabados cálidos"
       }
     ]
   },
