@@ -91,6 +91,13 @@ const portfolioStories = [
   },
 ];
 
+const proofSteps = [
+  ["01", t("Estado inicial"), t("Registramos las condiciones del inmueble antes de intervenir, con diagnóstico y evidencia fotográfica."), "estado-inicial"],
+  ["02", t("Avance por etapas"), t("Documentamos lo ejecutado, los siguientes trabajos y cualquier decisión necesaria durante la obra."), "avance-etapas"],
+  ["03", t("Detalle de acabados"), t("Revisamos juntas, cortes, pintura, instalaciones y cada detalle que determina la calidad final."), "detalle-acabados"],
+  ["04", t("Entrega limpia"), t("Retiramos protecciones, herramientas y residuos, y entregamos el espacio listo para usarse."), "entrega-limpia"],
+];
+
 const projectCases = [
   {
     number: "01",
@@ -257,12 +264,18 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
         </div>
         <div class="portfolio-proof" aria-label={t("Qué documentamos en cada proyecto")}>
           <p>{t("Una obra bien hecha también debe poder comprobarse.")}</p>
-          <ul>
-            <li><a href={lang === "en" ? "/en/process/#estado-inicial" : "/proceso/#estado-inicial"}>{t("Estado inicial")} <span aria-hidden="true">↗</span></a></li>
-            <li><a href={lang === "en" ? "/en/process/#avance-etapas" : "/proceso/#avance-etapas"}>{t("Avance por etapas")} <span aria-hidden="true">↗</span></a></li>
-            <li><a href={lang === "en" ? "/en/process/#detalle-acabados" : "/proceso/#detalle-acabados"}>{t("Detalle de acabados")} <span aria-hidden="true">↗</span></a></li>
-            <li><a href={lang === "en" ? "/en/process/#entrega-limpia" : "/proceso/#entrega-limpia"}>{t("Entrega limpia")} <span aria-hidden="true">↗</span></a></li>
-          </ul>
+          <ol>
+            {proofSteps.map(([number, title, description, anchor]) => (
+              <li>
+                <a href={`${lang === "en" ? "/en/process/" : "/proceso/"}#${anchor}`}>
+                  <span class="portfolio-proof-number" aria-hidden="true">{number}</span>
+                  <strong>{title}</strong>
+                  <p>{description}</p>
+                  <span class="portfolio-proof-link">{t("Ver etapa")} <span aria-hidden="true">↗</span></span>
+                </a>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
