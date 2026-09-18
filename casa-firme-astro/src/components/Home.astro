@@ -92,10 +92,10 @@ const portfolioStories = [
 ];
 
 const proofSteps = [
-  ["01", t("Estado inicial"), t("Registramos las condiciones del inmueble antes de intervenir, con diagnóstico y evidencia fotográfica."), "estado-inicial"],
-  ["02", t("Avance por etapas"), t("Documentamos lo ejecutado, los siguientes trabajos y cualquier decisión necesaria durante la obra."), "avance-etapas"],
-  ["03", t("Detalle de acabados"), t("Revisamos juntas, cortes, pintura, instalaciones y cada detalle que determina la calidad final."), "detalle-acabados"],
-  ["04", t("Entrega limpia"), t("Retiramos protecciones, herramientas y residuos, y entregamos el espacio listo para usarse."), "entrega-limpia"],
+  ["01", t("Estado inicial"), t("Registramos las condiciones del inmueble antes de intervenir, con diagnóstico y evidencia fotográfica."), "estado-inicial", [[t("Inspección visual"), t("Revisamos superficies, instalaciones y puntos críticos del inmueble.")], [t("Registro fotográfico"), t("Creamos evidencia clara del estado previo a cualquier trabajo.")], [t("Alcance definido"), t("Acordamos prioridades, materiales, tiempos y costos antes de comenzar.")]]],
+  ["02", t("Avance por etapas"), t("Documentamos lo ejecutado, los siguientes trabajos y cualquier decisión necesaria durante la obra."), "avance-etapas", [[t("Plan de trabajo"), t("Ordenamos actividades, especialidades, accesos y tiempos de secado.")], [t("Reportes de avance"), t("Compartimos fotografías, logros y las siguientes acciones programadas.")], [t("Control de cambios"), t("Explicamos y autorizamos cualquier imprevisto antes de continuar.")]]],
+  ["03", t("Detalle de acabados"), t("Revisamos juntas, cortes, pintura, instalaciones y cada detalle que determina la calidad final."), "detalle-acabados", [[t("Revisión técnica"), t("Verificamos niveles, sellos, conexiones y funcionamiento.")], [t("Control de acabados"), t("Inspeccionamos juntas, cortes, pintura y encuentros visibles.")], [t("Lista de pendientes"), t("Registramos y resolvemos cada corrección antes de la aceptación final.")]]],
+  ["04", t("Entrega limpia"), t("Retiramos protecciones, herramientas y residuos, y entregamos el espacio listo para usarse."), "entrega-limpia", [[t("Limpieza final"), t("Retiramos protecciones, herramientas y residuos de la obra.")], [t("Expediente de entrega"), t("Reunimos fotografías, materiales utilizados y recomendaciones de cuidado.")], [t("Garantía y seguimiento"), t("Formalizamos el respaldo acordado y damos seguimiento posterior.")]]],
 ];
 
 const projectCases = [
@@ -265,17 +265,29 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
         <div class="portfolio-proof" aria-label={t("Qué documentamos en cada proyecto")}>
           <p>{t("Una obra bien hecha también debe poder comprobarse.")}</p>
           <ol>
-            {proofSteps.map(([number, title, description, anchor]) => (
+            {proofSteps.map(([number, title, description], index) => (
               <li>
-                <a href={`${lang === "en" ? "/en/process/" : "/proceso/"}#${anchor}`}>
+                <button class="portfolio-proof-trigger" type="button" aria-expanded={index === 0 ? "true" : "false"} aria-controls={`proof-detail-${index}`} data-proof-index={index}>
                   <span class="portfolio-proof-number" aria-hidden="true">{number}</span>
                   <strong>{title}</strong>
                   <p>{description}</p>
-                  <span class="portfolio-proof-link">{t("Ver etapa")} <span aria-hidden="true">↗</span></span>
-                </a>
+                  <span class="portfolio-proof-link">{t("Ver detalle")} <span aria-hidden="true">↓</span></span>
+                </button>
               </li>
             ))}
           </ol>
+          <div class="portfolio-proof-details">
+            {proofSteps.map(([number, title, description, anchor, details], index) => (
+              <article id={`proof-detail-${index}`} data-proof-detail={index} hidden={index !== 0}>
+                <header><span>{number}</span><div><p>{t("Evidencia de la etapa")}</p><h3>{title}</h3></div></header>
+                <p class="portfolio-proof-summary">{description}</p>
+                <div class="portfolio-proof-detail-grid">
+                  {(details as string[][]).map(([detailTitle, detailText]) => <div><strong>{detailTitle}</strong><p>{detailText}</p></div>)}
+                </div>
+                <a class="text-link" href={`${lang === "en" ? "/en/process/" : "/proceso/"}#${anchor}`}>{t("Conocer el proceso completo")} <span>→</span></a>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -533,6 +545,18 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
 
       const menuToggle = document.querySelector('.menu-toggle');
       const mobileMenu = document.querySelector('#mobile-menu');
+      const proofTriggers = document.querySelectorAll('[data-proof-index]');
+      const proofDetails = document.querySelectorAll('[data-proof-detail]');
+
+      proofTriggers.forEach((trigger) => trigger.addEventListener('click', () => {
+        const selected = trigger.getAttribute('data-proof-index');
+        proofTriggers.forEach((item) => item.setAttribute('aria-expanded', String(item === trigger)));
+        proofDetails.forEach((detail) => detail.toggleAttribute('hidden', detail.getAttribute('data-proof-detail') !== selected));
+        if (window.matchMedia('(max-width: 760px)').matches) {
+          document.querySelector(`[data-proof-detail="${selected}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }));
+
       const closeMenu = () => {
         mobileMenu.hidden = true;
         menuToggle.setAttribute('aria-expanded', 'false');
