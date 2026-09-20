@@ -1,0 +1,71 @@
+---
+interface Props {
+  lang: "es" | "en";
+  title: string;
+  description: string;
+  pathname: string;
+  alternatePathname: string;
+  type?: "website" | "article";
+  includeOrganization?: boolean;
+}
+
+const {
+  lang,
+  title,
+  description,
+  pathname,
+  alternatePathname,
+  type = "website",
+  includeOrganization = false,
+} = Astro.props;
+const site = Astro.site!;
+const url = new URL(pathname, site);
+const alternateUrl = new URL(alternatePathname, site);
+const image = new URL("/hero.webp", site);
+const locale = lang === "en" ? "en_US" : "es_MX";
+const alternateLocale = lang === "en" ? "es_MX" : "en_US";
+const graph = [
+  {
+    "@type": "WebSite",
+    "@id": `${site}#website`,
+    url: site,
+    name: "Espacio Firme",
+    inLanguage: lang,
+  },
+  ...(includeOrganization
+    ? [{
+        "@type": "Organization",
+        "@id": `${site}#organization`,
+        name: "Espacio Firme",
+        url: site,
+        logo: image,
+        description,
+      }]
+    : []),
+];
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content={description} />
+<meta name="theme-color" content="#111b1a" />
+<link rel="canonical" href={url} />
+<link rel="alternate" hreflang={lang} href={url} />
+<link rel="alternate" hreflang={lang === "es" ? "en" : "es"} href={alternateUrl} />
+<link rel="alternate" hreflang="x-default" href={new URL(lang === "es" ? pathname : alternatePathname, site)} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<title>{title}</title>
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content="Espacio Firme" />
+<meta property="og:locale" content={locale} />
+<meta property="og:locale:alternate" content={alternateLocale} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={image} />
+<meta property="og:image:alt" content="Espacio Firme, mantenimiento profesional de propiedades" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": graph })} />

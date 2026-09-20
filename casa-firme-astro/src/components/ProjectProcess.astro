@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import SeoHead from "./SeoHead.astro";
 
 interface Props { lang: "es" | "en" }
 const { lang } = Astro.props;
@@ -34,9 +35,14 @@ const ids = ["estado-inicial", "avance-etapas", "detalle-acabados", "entrega-lim
 <!doctype html>
 <html lang={lang}>
   <head>
-    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={copy.intro} /><link rel="canonical" href={new URL(current, Astro.site)} /><link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <title>{copy.process} | Espacio Firme</title>
+    <SeoHead
+      lang={lang}
+      title={`${copy.process} | Espacio Firme`}
+      description={copy.intro}
+      pathname={current}
+      alternatePathname={isEnglish ? "/proceso/" : "/en/process/"}
+      type="article"
+    />
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-D4WRBHJYXW"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];

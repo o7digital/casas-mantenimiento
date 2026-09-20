@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://casa-firme-astro.vercel.app/sitemap.xml
