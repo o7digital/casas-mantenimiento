@@ -132,7 +132,7 @@ const projectCases = [
   },
 ];
 
-const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar solicitud", "Enviando…", "Hay demasiados intentos de envío. Espere unos minutos y vuelva a intentarlo. Sus datos siguen aquí.", "No se pudo enviar la solicitud. Revise los datos e inténtelo de nuevo en unos minutos. Sus datos siguen aquí.", "No pudimos confirmar el envío. Sus datos siguen aquí; revise su conexión e inténtelo de nuevo."].map(key => [key, t(key)]));
+const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar solicitud", "Enviando…", "Hay demasiados intentos de envío. Espere unos minutos y vuelva a intentarlo. Sus datos siguen aquí.", "No se pudo enviar la solicitud. Revise los datos e inténtelo de nuevo en unos minutos. Sus datos siguen aquí.", "No pudimos confirmar el envío. Sus datos siguen aquí; revise su conexión e inténtelo de nuevo.", "Revise el correo electrónico: incluya un formato válido, por ejemplo, nombre@gmail.com.", "El correo electrónico es obligatorio."].map(key => [key, t(key)]));
 ---
 
 <!doctype html>
@@ -410,7 +410,7 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
           <input type="hidden" name="_subject" value={t("Nueva solicitud de contacto — Espacio Firme")} />
           <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden />
           <label>{t("Nombre completo")}<input id="name" name="name" type="text" autocomplete="name" placeholder={t("¿Cómo podemos llamarle?")} required /></label>
-          <label>{t("Correo electrónico")}<input id="email" name="email" type="email" autocomplete="email" placeholder={t("usted@ejemplo.com")} required /></label>
+          <label>{t("Correo electrónico")}<input id="email" name="email" type="email" autocomplete="email" placeholder={t("usted@ejemplo.com")} aria-describedby="email-error" required /><span class="field-error" id="email-error" role="alert" hidden></span></label>
           <label>{t("Teléfono o WhatsApp (opcional)")}<input id="phone" name="phone" type="tel" autocomplete="tel" placeholder={t("Incluya el código de país")} /></label>
           <div class="field-row">
             <label>{t("Tipo de propiedad")}<select id="property" name="property"><option>{t("Casa habitación")}</option><option>{t("Departamento")}</option><option>{t("Oficina")}</option><option>{t("Comercio")}</option></select></label>
@@ -595,9 +595,26 @@ const messages = Object.fromEntries(["Abrir menú", "Cerrar menú", "Enviar soli
       const submitLabel = document.querySelector('#submit-label')!;
       const success = document.querySelector<HTMLElement>('#form-success')!;
       const formError = document.querySelector<HTMLElement>('#form-error')!;
+      const emailInput = document.querySelector<HTMLInputElement>('#email')!;
+      const emailError = document.querySelector<HTMLElement>('#email-error')!;
+
+      const validateEmail = () => {
+        const value = emailInput.value.trim();
+        const isValid = value === '' || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+        const message = value === '' ? t("El correo electrónico es obligatorio.") : t("Revise el correo electrónico: incluya un formato válido, por ejemplo, nombre@gmail.com.");
+        emailInput.setCustomValidity(isValid ? '' : message);
+        emailError.textContent = isValid ? '' : message;
+        emailError.hidden = isValid;
+        emailInput.setAttribute('aria-invalid', String(!isValid));
+        return isValid;
+      };
+
+      emailInput.addEventListener('input', validateEmail);
+      emailInput.addEventListener('blur', validateEmail);
 
       quoteForm.addEventListener('submit', async (event) => {
         event.preventDefault();
+        validateEmail();
         if (submitButton.disabled || !quoteForm.reportValidity()) return;
 
         const data = new FormData(quoteForm);

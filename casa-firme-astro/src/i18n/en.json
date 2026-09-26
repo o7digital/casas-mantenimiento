@@ -230,6 +230,8 @@
   "Hay demasiados intentos de envío. Espere unos minutos y vuelva a intentarlo. Sus datos siguen aquí.": "Too many submission attempts. Please wait a few minutes and try again. Your details are still here.",
   "No se pudo enviar la solicitud. Revise los datos e inténtelo de nuevo en unos minutos. Sus datos siguen aquí.": "Your request could not be sent. Check your details and try again in a few minutes. Your details are still here.",
   "No pudimos confirmar el envío. Sus datos siguen aquí; revise su conexión e inténtelo de nuevo.": "We could not confirm your submission. Your details are still here; check your connection and try again.",
+  "Revise el correo electrónico: incluya un formato válido, por ejemplo, nombre@gmail.com.": "Check your email address: enter a valid format, for example, name@gmail.com.",
+  "El correo electrónico es obligatorio.": "Email address is required.",
   "Idioma": "Language",
   "Ingeniero Arquitecto": "Architectural Engineer",
   "Project Manager Senior": "Senior Project Manager",
